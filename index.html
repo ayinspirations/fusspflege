@@ -159,8 +159,10 @@
     <a href="#termin" class="btn btn-outline" data-tile="right">Termin sichern</a>
   </div>
 
-  <div class="flow-rail">
-    <article class="flow-card flow-lead" data-tile="left">
+  <div class="flow-rail" id="flowRail">
+    <article class="flow-card is-open" data-tile="left" style="--d:0ms"
+             role="button" tabindex="0" aria-expanded="true"
+             aria-label="Ganzheitlicher Ansatz anzeigen">
       <div class="ph shot"><img src="assets/img/wellness.webp" alt="Behandlung im Studio" loading="lazy" decoding="async"></div>
       <div class="flow-badge"><i>↗</i><span>Mehr Details</span></div>
       <div class="flow-body">
@@ -169,17 +171,49 @@
       </div>
       <span class="chip"><i>✻</i> Fußpflege</span>
     </article>
-    <article class="flow-card" data-tile="right" style="--d:120ms">
+    <article class="flow-card" data-tile="right" style="--d:120ms"
+             role="button" tabindex="0" aria-expanded="false"
+             aria-label="Sichtbares Ergebnis anzeigen">
       <div class="ph shot"><img src="assets/img/fuesse.webp" alt="Gepflegte Füße" loading="lazy" decoding="async"></div>
+      <div class="flow-badge"><i>↗</i><span>Mehr Details</span></div>
+      <div class="flow-body">
+        <h3>Sichtbares Ergebnis</h3>
+        <p>Glatte Haut, saubere Nägel, keine Druckstellen – und Füße, die sich wieder leicht anfühlen.</p>
+      </div>
+      <span class="chip"><i>✻</i> Ergebnis</span>
     </article>
-    <article class="flow-card" data-tile="right" style="--d:240ms">
+    <article class="flow-card" data-tile="right" style="--d:240ms"
+             role="button" tabindex="0" aria-expanded="false"
+             aria-label="Pflege für zu Hause anzeigen">
       <div class="ph shot"><img src="assets/img/studio2.webp" alt="Pflegeprodukte" loading="lazy" decoding="async"></div>
+      <div class="flow-badge"><i>↗</i><span>Mehr Details</span></div>
+      <div class="flow-body">
+        <h3>Pflege für zu Hause</h3>
+        <p>Zum Abschluss erhalten Sie eine Empfehlung aus dem Gehwol®-Sortiment, abgestimmt auf Ihren Hauttyp.</p>
+      </div>
+      <span class="chip"><i>✻</i> Gehwol®</span>
     </article>
-    <article class="flow-card" data-tile="right" style="--d:360ms">
+    <article class="flow-card" data-tile="right" style="--d:360ms"
+             role="button" tabindex="0" aria-expanded="false"
+             aria-label="Ruhe und Wärme anzeigen">
       <div class="ph shot"><img src="assets/img/handtuecher.webp" alt="Frische Handtücher" loading="lazy" decoding="async"></div>
+      <div class="flow-badge"><i>↗</i><span>Mehr Details</span></div>
+      <div class="flow-body">
+        <h3>Ruhe und Wärme</h3>
+        <p>Warme Tücher, ein Kräuterbad und Zeit ohne Hektik – die Behandlung soll auch guttun.</p>
+      </div>
+      <span class="chip"><i>✻</i> Wohlfühlen</span>
     </article>
-    <article class="flow-card" data-tile="right" style="--d:480ms">
+    <article class="flow-card" data-tile="right" style="--d:480ms"
+             role="button" tabindex="0" aria-expanded="false"
+             aria-label="Ruhiges Ambiente anzeigen">
       <div class="ph shot"><img src="assets/img/travertin.webp" alt="Spa-Ambiente" loading="lazy" decoding="async"></div>
+      <div class="flow-badge"><i>↗</i><span>Mehr Details</span></div>
+      <div class="flow-body">
+        <h3>Ruhiges Ambiente</h3>
+        <p>Helle Räume, warme Materialien und höchste Hygiene – damit Sie sich vom ersten Moment an wohlfühlen.</p>
+      </div>
+      <span class="chip"><i>✻</i> Studio</span>
     </article>
   </div>
 

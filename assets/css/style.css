@@ -292,37 +292,47 @@ button,input,select,textarea{font:inherit;color:inherit}
 .svc-card.is-active .svc-badge,.svc-card.is-active .svc-body{opacity:1}
 
 /* ============ Flow ============ */
-/* Breite Leitkarte links, schmalere Bildkarten daneben, die zum rechten Rand
-   auslaufen - Kopfzeile und Leitkarte stehen auf derselben Fluchtlinie. */
-/* Die Reihe ist gegenueber der Ueberschrift eingerueckt; die breite Leitkachel
-   ist ein 16:9-Rechteck, die schmalen Bildkacheln laufen zum rechten Rand aus. */
+/* Akkordeon: die geoeffnete Kachel ist breit und traegt Titel, Text und Chip,
+   die uebrigen stehen als schmale Bildstreifen daneben. Ein Klick tauscht die
+   Rollen - animiert wird die flex-basis, weil width:auto nicht uebergeht. */
 .flow-rail{width:100%;display:flex;gap:10px;align-items:stretch;height:clamp(280px,31vw,470px);
-  /* overflow-x:auto zwingt overflow-y von visible auf auto - die Reihe wurde
-     dadurch selbst vertikal scrollbar und schluckte das Mausrad. */
   overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;
   scrollbar-width:none;
   padding:8px 0 22px calc(max(20px,(100vw - var(--wrap))/2) + 5vw)}
 .flow-rail::-webkit-scrollbar{display:none}
-.flow-card{position:relative;flex:0 0 auto;height:100%;width:clamp(100px,11vw,160px);
-  border-radius:var(--r-m);overflow:hidden;box-shadow:var(--shadow)}
+.flow-card{position:relative;flex:0 0 clamp(100px,11vw,160px);height:100%;
+  border-radius:var(--r-m);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;
+  transition:flex-basis .85s var(--ease),border-radius .6s var(--ease)}
+.flow-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .flow-card .ph{position:absolute;inset:0}
-.flow-lead{width:auto;aspect-ratio:16/9}
-.flow-lead::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(120,52,34,.72),rgba(120,52,34,.18) 62%,transparent)}
+.flow-card.is-open{flex-basis:min(740px,54vw);border-radius:var(--r-l);cursor:default}
+.flow-card::after{content:"";position:absolute;inset:0;opacity:0;
+  /* Zwei Lagen: die schraege Faerbung gibt der Kachel den Ton, der Verlauf von
+     unten traegt die Schrift auch ueber hellen Motiven. */
+  background:linear-gradient(to top,rgba(52,24,15,.82),rgba(52,24,15,.28) 42%,transparent 68%),
+             linear-gradient(105deg,rgba(120,52,34,.6),rgba(120,52,34,.14) 62%,transparent);
+  transition:opacity .6s var(--ease)}
+.flow-card.is-open::after{opacity:1}
+/* Die Beschriftung erscheint erst, wenn die Kachel breit genug dafuer ist. */
+.flow-badge,.flow-body,.chip{opacity:0;pointer-events:none;
+  transition:opacity .45s var(--ease)}
+.flow-card.is-open .flow-badge,
+.flow-card.is-open .flow-body,
+.flow-card.is-open .chip{opacity:1;transition-delay:.35s}
 .flow-badge{position:absolute;top:24px;right:24px;z-index:2;width:96px;height:96px;
   border-radius:50%;display:grid;place-content:center;justify-items:center;gap:4px;
   color:#fff;font-size:11px;background:rgba(35,20,15,.3);backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.3);transition:transform .5s var(--ease)}
+  border:1px solid rgba(255,255,255,.3);transition:transform .5s var(--ease),opacity .45s var(--ease)}
 .flow-badge i{font-style:normal;font-size:15px}
 .flow-card:hover .flow-badge{transform:scale(1.08)}
 .flow-body{position:absolute;left:0;right:0;bottom:0;z-index:2;
   padding:clamp(22px,3vw,34px);color:#fff;display:flex;flex-direction:column;gap:10px}
-.flow-body h3{font-size:clamp(20px,2.3vw,27px);font-weight:700}
+.flow-body h3{font-size:clamp(20px,2.3vw,27px);font-weight:700;white-space:nowrap}
 .flow-body p{font-size:14px;line-height:1.55;opacity:.9;max-width:26ch}
 .chip{position:absolute;right:clamp(22px,3vw,34px);bottom:clamp(22px,3vw,34px);z-index:3;
   display:inline-flex;gap:8px;align-items:center;padding:11px 20px;border-radius:999px;
   background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.32);
-  backdrop-filter:blur(10px);color:#fff;font-size:13px;font-weight:500}
+  backdrop-filter:blur(10px);color:#fff;font-size:13px;font-weight:500;white-space:nowrap}
 .chip i{font-style:normal;opacity:.75}
 
 .flow-nav{display:none;gap:10px;justify-content:flex-end;
@@ -450,8 +460,13 @@ a.info:hover{transform:translateY(-4px);background:#fff}
   .svc-card .svc-body,.svc-card .svc-badge{display:none}
   /* Wohlfuehl-Momente: alle Kacheln gleich breit, Wechsel ueber die Pfeile. */
   .flow-rail{height:auto;padding:8px 20px 20px;gap:14px;scroll-snap-type:x mandatory}
-  .flow-card,.flow-lead{width:calc(100vw - 40px);aspect-ratio:16/11;height:auto;
-    scroll-snap-align:center}
+  .flow-body h3{white-space:normal}
+  /* Mobil sind alle Kacheln gleich breit - auch die geoeffnete, sonst zieht
+     die Desktop-Regel sie auf 54vw zusammen. */
+  .flow-card,.flow-card.is-open{flex-basis:calc(100vw - 40px);aspect-ratio:16/11;
+    height:auto;scroll-snap-align:center;border-radius:var(--r-m)}
+  .flow-card::after,.flow-card .flow-badge,
+  .flow-card .flow-body,.flow-card .chip{opacity:1;transition-delay:0s}
   .flow-nav{display:flex}
   /* Pflegekacheln: flacheres Bild, damit sie nicht die halbe Seite fuellen. */
   .pcard .ph{aspect-ratio:4/3}

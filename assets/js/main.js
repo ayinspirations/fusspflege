@@ -216,8 +216,39 @@
   }, { threshold: 0.6 });
   counters.forEach((c) => countIo.observe(c));
 
-  /* ---- Wohlfuehl-Momente: Pfeile blaettern durch die Reihe ---- */
+  /* ---- Wohlfuehl-Momente: Akkordeon ----
+     Ein Klick auf eine eingeklappte Kachel oeffnet sie, die bisher offene
+     klappt zu. Wird die geoeffnete Kachel dabei zu breit fuer den sichtbaren
+     Bereich, schiebt die Reihe gerade so weit nach, dass sie ganz im Bild ist. */
   const flowRail = document.querySelector('.flow-rail');
+  const flowCards = [...document.querySelectorAll('.flow-card')];
+
+  const openFlow = (card) => {
+    if (card.classList.contains('is-open')) return;
+    flowCards.forEach((c) => {
+      const open = c === card;
+      c.classList.toggle('is-open', open);
+      c.setAttribute('aria-expanded', String(open));
+    });
+    setTimeout(() => {
+      if (!flowRail) return;
+      const rail = flowRail.getBoundingClientRect();
+      const box = card.getBoundingClientRect();
+      if (box.right > rail.right - 8) {
+        flowRail.scrollBy({ left: box.right - rail.right + 24, behavior: 'smooth' });
+      } else if (box.left < rail.left + 8) {
+        flowRail.scrollBy({ left: box.left - rail.left - 24, behavior: 'smooth' });
+      }
+    }, 900);
+  };
+
+  flowCards.forEach((card) => {
+    card.addEventListener('click', () => openFlow(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFlow(card); }
+    });
+  });
+
   const flowStep = (dir) => {
     if (!flowRail) return;
     const card = flowRail.querySelector('.flow-card');
