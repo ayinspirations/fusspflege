@@ -25,7 +25,7 @@
       railIo.unobserve(e.target);
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.flow-rail, .svc-rail, .hero-cards, .hero-tags').forEach((r) => railIo.observe(r));
+  document.querySelectorAll('.flow-rail, .svc-rail, .hero-cards').forEach((r) => railIo.observe(r));
 
   /* ---- Header: verstecken beim Runterscrollen, Farbe wechseln ---- */
   const header = document.getElementById('header');
@@ -45,7 +45,7 @@
     /* Parallax im Hero */
     const media = document.querySelector('[data-parallax]');
     if (media && y < window.innerHeight * 1.2) {
-      media.style.transform = `translate3d(0, ${y * 0.28}px, 0) scale(1.04)`;
+      media.style.transform = `translate3d(0, ${y * 0.16}px, 0) scale(1.08)`;
     }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -97,35 +97,6 @@
   });
   svcPanes.forEach((el, i) => el.addEventListener('mouseenter', () => showSvc(i, false)));
 
-  /* ---- Hero-Slider: wechselt durch die Behandlungen ---- */
-  const hsFill = document.getElementById('hsFill');
-  const hsNums = document.querySelectorAll('.hs-num');
-  const heroCards = [...document.querySelectorAll('.hcard')];
-  const heroTexts = [
-    ['Wellness-Fußpflege', 'Kräuter-Fußbad, Peeling und entspannende Fußmassage'],
-    ['Sportlerfüße', 'Regeneration für stark beanspruchte Füße'],
-    ['Diabetische Fußpflege', 'Behutsame Fachfußpflege zur Vorbeugung'],
-    ['Nagelkorrektur', 'Spangensysteme bei eingewachsenen Nägeln'],
-  ];
-  let slide = 0;
-  const setSlide = (n) => {
-    slide = (n + heroTexts.length) % heroTexts.length;
-    if (hsFill) hsFill.style.width = ((slide + 1) / heroTexts.length) * 100 + '%';
-    if (hsNums[0]) hsNums[0].textContent = String(slide + 1).padStart(2, '0');
-    document.querySelectorAll('.hcard-text').forEach((card, i) => {
-      const t = heroTexts[(slide + i) % heroTexts.length];
-      card.style.opacity = '0';
-      setTimeout(() => {
-        card.querySelector('h3').textContent = t[0];
-        card.querySelector('p').textContent = t[1];
-        card.style.opacity = '';
-      }, 220);
-    });
-    heroCards.forEach((c) => { c.style.transition = 'opacity .45s var(--ease), transform .5s var(--ease)'; });
-  };
-  document.getElementById('hsNext')?.addEventListener('click', () => setSlide(slide + 1));
-  document.getElementById('hsPrev')?.addEventListener('click', () => setSlide(slide - 1));
-
   /* ---- Zähler in den Stat-Kacheln ---- */
   const counters = document.querySelectorAll('[data-count]');
   const countIo = new IntersectionObserver((entries) => {
@@ -148,6 +119,13 @@
   /* ---- Merken-Herz ---- */
   document.querySelectorAll('.fav').forEach((b) =>
     b.addEventListener('click', () => b.classList.toggle('on')));
+
+  /* ---- Fotos sanft einblenden, sobald geladen ---- */
+  document.querySelectorAll('.shot > img').forEach((im) => {
+    if (im.complete && im.naturalWidth) im.classList.add('loaded');
+    else im.addEventListener('load', () => im.classList.add('loaded'), { once: true });
+    im.addEventListener('error', () => im.classList.add('loaded'), { once: true });
+  });
 
   /* ---- Jahr im Footer ---- */
   const yr = document.getElementById('yr');

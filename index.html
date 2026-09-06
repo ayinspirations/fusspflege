@@ -31,34 +31,24 @@
   <a href="#home" class="brand">Fußpflege<span>Wellness</span></a>
 
   <div class="nav-actions">
-    <a href="#leistungen" class="icon-btn" aria-label="Leistungen suchen">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg>
-    </a>
-    <a href="#pflege" class="icon-btn" aria-label="Pflegeprodukte">
-      <svg viewBox="0 0 24 24"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-    </a>
-    <a href="#termin" class="icon-btn" aria-label="Termin">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
-    </a>
+    <a href="#termin" class="btn btn-dark">Termin buchen <i class="arr">↗</i></a>
   </div>
 </header>
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero" id="home">
   <div class="hero-media" data-parallax>
-    <div class="ph ph-hero" role="img" aria-label="Entspannte Fußpflege-Behandlung"></div>
+    <img class="hero-img" src="assets/img/hero.webp" alt="Gepflegte Füße vor warmem Hintergrund" fetchpriority="high" decoding="async">
     <div class="hero-veil"></div>
   </div>
 
   <div class="hero-inner">
     <h1 class="hero-title">
-      <span class="line" data-reveal><b>Wohlfühlen</b> beginnt bei</span>
-      <span class="line" data-reveal>den <b>Füßen</b> – Ihre Fachfuß-</span>
-      <span class="line" data-reveal><b>pflege</b> in Leonberg</span>
+      <span class="line" data-reveal><b>Wohlfühlen</b> beginnt</span>
+      <span class="line" data-reveal>bei den <b>Füßen</b></span>
     </h1>
     <p class="hero-sub" data-reveal>
-      Professionelle, hygienische und entspannende Fußpflege nach brasilianischer Art.
-      Gründlich, intensiv und mit viel Liebe zum Detail – für Füße, die täglich viel leisten.
+      Ihre Fachfußpflege in Leonberg – professionell,<br>hygienisch und entspannend.
     </p>
     <div class="hero-cta" data-reveal>
       <a href="#termin" class="btn btn-light">Termin vereinbaren <i class="arr">↗</i></a>
@@ -73,38 +63,21 @@
 
   <div class="hero-cards" id="heroCards">
     <article class="hcard" data-tile="right" style="--d:0ms">
-      <div class="ph ph-a"></div><span class="hcard-arrow">↗</span>
+      <div class="ph shot "><img src="assets/img/fuesse.webp" alt="Gepflegte Füße" fetchpriority="high" decoding="async"></div><span class="hcard-arrow">↗</span>
     </article>
     <article class="hcard hcard-text" data-tile="right" style="--d:110ms">
-      <h3>Wellness-Fußpflege</h3>
+      <div class="ph shot "><img src="assets/img/serum.webp" alt="Pflegeserum" fetchpriority="high" decoding="async"></div><h3>Wellness-Fußpflege</h3>
       <p>Kräuter-Fußbad, Peeling und entspannende Fußmassage</p>
     </article>
     <article class="hcard" data-tile="right" style="--d:220ms">
-      <div class="ph ph-b"></div><span class="hcard-arrow">↗</span>
+      <div class="ph shot "><img src="assets/img/travertin.webp" alt="Spa-Ambiente" fetchpriority="high" decoding="async"></div><span class="hcard-arrow">↗</span>
     </article>
     <article class="hcard hcard-text" data-tile="right" style="--d:330ms">
-      <h3>Gehwol® Pflege</h3>
+      <div class="ph shot "><img src="assets/img/handtuecher.webp" alt="Frische Handtücher" fetchpriority="high" decoding="async"></div><h3>Gehwol® Pflege</h3>
       <p>Hochwertige Produkte für beste Pflege &amp; Hygiene</p>
     </article>
   </div>
 
-  <div class="hero-foot">
-    <div class="hero-tags">
-      <span class="tag" data-tile="left" style="--d:0ms"><i>✻</i> Wellness-Fußpflege</span>
-      <span class="tag" data-tile="left" style="--d:70ms"><i>✻</i> Sportlerfüße</span>
-      <span class="tag" data-tile="left" style="--d:140ms"><i>✻</i> Diabetiker</span>
-      <span class="tag" data-tile="left" style="--d:210ms"><i>✻</i> Nagelkorrektur</span>
-      <span class="tag" data-tile="left" style="--d:280ms"><i>✻</i> Maniküre</span>
-    </div>
-
-    <div class="hero-slider" data-tile="right">
-      <span class="hs-num">01</span>
-      <span class="hs-bar"><i id="hsFill"></i></span>
-      <span class="hs-num hs-dim">04</span>
-      <button class="hs-btn" id="hsPrev" aria-label="Zurück">←</button>
-      <button class="hs-btn hs-btn-dark" id="hsNext" aria-label="Weiter">→</button>
-    </div>
-  </div>
 </section>
 
 <!-- ══════════ MARQUEE ══════════ -->
@@ -119,18 +92,18 @@
 <section class="section about" id="ueber-uns">
   <div class="wrap about-grid">
     <div class="about-left">
-      <div class="tile tile-tall" data-tile="left"><div class="ph ph-c"></div></div>
+      <div class="tile tile-tall" data-tile="left"><div class="ph shot "><img src="assets/img/studio1.webp" alt="Unser Studio in Leonberg" loading="lazy" decoding="async"></div></div>
       <p class="about-note" data-reveal>Entspannung für Haut und Sinne –<br>Ihre Fußpflege in Leonberg.</p>
       <a href="#leistungen" class="btn btn-outline" data-tile="left" style="--d:120ms">Mehr erfahren <i class="arr">↗</i></a>
     </div>
 
     <div class="about-mid">
-      <div class="tile tile-soft" data-tile="up" style="--d:140ms"><div class="ph ph-d"></div></div>
+      <div class="tile tile-soft" data-tile="up" style="--d:140ms"><div class="ph shot "><img src="assets/img/studio2.webp" alt="Pflegeprodukte im Studio" loading="lazy" decoding="async"></div></div>
     </div>
 
     <div class="about-right">
       <h2 class="h2" data-reveal>Entdecken Sie<br>Ihr Wohlbefinden</h2>
-      <div class="tile tile-wide" data-tile="right" style="--d:200ms"><div class="ph ph-e"></div></div>
+      <div class="tile tile-wide" data-tile="right" style="--d:200ms"><div class="ph shot "><img src="assets/img/studio3.webp" alt="Behandlungsplatz im Studio" loading="lazy" decoding="async"></div></div>
       <p class="lead" data-reveal>
         In unserem Studio arbeiten wir mit hochwertigen Produkten der Marke <strong>Gehwol®</strong>,
         um Ihnen beste Pflege und höchste Hygiene zu garantieren. Jede Behandlung nehmen wir uns
@@ -157,22 +130,22 @@
   <div class="services-grid">
     <ul class="svc-list" id="svcList">
       <li class="svc is-active" data-svc="0" data-tile="left" style="--d:0ms">
-        <span class="svc-thumb ph ph-a"></span><span class="svc-name">Wellness-Fußpflege</span><span class="svc-go">↗</span>
+        <span class="svc-thumb ph shot"><img src="assets/img/t-wellness.webp" alt="Wellness-Fußpflege" loading="lazy" decoding="async"></span><span class="svc-name">Wellness-Fußpflege</span><span class="svc-go">↗</span>
       </li>
       <li class="svc" data-svc="1" data-tile="left" style="--d:90ms">
-        <span class="svc-thumb ph ph-b"></span><span class="svc-name">Sportlerfüße</span><span class="svc-go">↗</span>
+        <span class="svc-thumb ph shot"><img src="assets/img/t-sportler.webp" alt="Sportlerfüße" loading="lazy" decoding="async"></span><span class="svc-name">Sportlerfüße</span><span class="svc-go">↗</span>
       </li>
       <li class="svc" data-svc="2" data-tile="left" style="--d:180ms">
-        <span class="svc-thumb ph ph-c"></span><span class="svc-name">Diabetische Fußpflege</span><span class="svc-go">↗</span>
+        <span class="svc-thumb ph shot"><img src="assets/img/t-diabetisch.webp" alt="Diabetische Fußpflege" loading="lazy" decoding="async"></span><span class="svc-name">Diabetische Fußpflege</span><span class="svc-go">↗</span>
       </li>
       <li class="svc" data-svc="3" data-tile="left" style="--d:270ms">
-        <span class="svc-thumb ph ph-d"></span><span class="svc-name">Eingewachsene Nägel</span><span class="svc-go">↗</span>
+        <span class="svc-thumb ph shot"><img src="assets/img/t-eingewachsen.webp" alt="Eingewachsene Nägel" loading="lazy" decoding="async"></span><span class="svc-name">Eingewachsene Nägel</span><span class="svc-go">↗</span>
       </li>
     </ul>
 
     <div class="svc-rail" id="svcRail">
       <article class="svc-card is-active" data-pane="0" data-tile="right" style="--d:0ms">
-        <div class="ph ph-a"></div>
+        <div class="ph shot "><img src="assets/img/wellness.webp" alt="Wellness-Fußpflege" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Wellness-Fußpflege</h3>
@@ -181,7 +154,7 @@
         </div>
       </article>
       <article class="svc-card" data-pane="1" data-tile="right" style="--d:120ms">
-        <div class="ph ph-b"></div>
+        <div class="ph shot "><img src="assets/img/sportler.webp" alt="Sportlerfüße" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Sportlerfüße</h3>
@@ -190,7 +163,8 @@
         </div>
       </article>
       <article class="svc-card" data-pane="2" data-tile="right" style="--d:240ms">
-        <div class="ph ph-c"></div>
+        <!-- Platzhalter: "diabetische fusspflege.png" fehlt noch im Repo -->
+        <div class="ph shot "><img src="assets/img/studio2.webp" alt="Diabetische Fußpflege" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Diabetische Fußpflege</h3>
@@ -199,7 +173,8 @@
         </div>
       </article>
       <article class="svc-card" data-pane="3" data-tile="right" style="--d:360ms">
-        <div class="ph ph-d"></div>
+        <!-- Platzhalter: "eingewachsene.png" fehlt noch im Repo -->
+        <div class="ph shot "><img src="assets/img/travertin.webp" alt="Eingewachsene Nägel" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Eingewachsene Nägel</h3>
@@ -220,7 +195,7 @@
 
   <div class="flow-rail">
     <article class="flow-card flow-lead" data-tile="left">
-      <div class="ph ph-e"></div>
+      <div class="ph shot "><img src="assets/img/wellness.webp" alt="Behandlung im Studio" loading="lazy" decoding="async"></div>
       <div class="flow-badge"><i>↗</i><span>Ablauf</span></div>
       <div class="flow-body">
         <h3>Ganzheitlicher Ansatz</h3>
@@ -228,10 +203,10 @@
         <span class="chip"><i>✻</i> Fußpflege</span>
       </div>
     </article>
-    <article class="flow-card" data-tile="right" style="--d:120ms"><div class="ph ph-a"></div><span class="flow-step">01 · Kräuter-Fußbad</span></article>
-    <article class="flow-card" data-tile="right" style="--d:240ms"><div class="ph ph-b"></div><span class="flow-step">02 · Peeling</span></article>
-    <article class="flow-card" data-tile="right" style="--d:360ms"><div class="ph ph-c"></div><span class="flow-step">03 · Nagel- &amp; Hautpflege</span></article>
-    <article class="flow-card" data-tile="right" style="--d:480ms"><div class="ph ph-d"></div><span class="flow-step">04 · Massage &amp; Lack</span></article>
+    <article class="flow-card" data-tile="right" style="--d:120ms"><div class="ph shot "><img src="assets/img/fuesse.webp" alt="Kräuter-Fußbad" loading="lazy" decoding="async"></div><span class="flow-step">01 · Kräuter-Fußbad</span></article>
+    <article class="flow-card" data-tile="right" style="--d:240ms"><div class="ph shot "><img src="assets/img/serum.webp" alt="Peeling" loading="lazy" decoding="async"></div><span class="flow-step">02 · Peeling</span></article>
+    <article class="flow-card" data-tile="right" style="--d:360ms"><div class="ph shot "><img src="assets/img/studio2.webp" alt="Nagel- und Hautpflege" loading="lazy" decoding="async"></div><span class="flow-step">03 · Nagel- &amp; Hautpflege</span></article>
+    <article class="flow-card" data-tile="right" style="--d:480ms"><div class="ph shot "><img src="assets/img/handtuecher.webp" alt="Massage und Lack" loading="lazy" decoding="async"></div><span class="flow-step">04 · Massage &amp; Lack</span></article>
   </div>
 </section>
 
@@ -245,15 +220,15 @@
 
     <div class="product-cards">
       <article class="pcard" data-tile="left" style="--d:0ms">
-        <div class="ph ph-f"></div><button class="fav" aria-label="Merken">♥</button>
+        <div class="ph shot "><img src="assets/img/serum.webp" alt="Pflegeserum" loading="lazy" decoding="async"></div><button class="fav" aria-label="Merken">♥</button>
         <div class="pcard-foot"><div><h4>Fußcreme</h4><span>ab 12,90 €</span></div><i class="arr">↗</i></div>
       </article>
       <article class="pcard" data-tile="up" style="--d:130ms">
-        <div class="ph ph-g"></div><button class="fav" aria-label="Merken">♥</button>
+        <div class="ph shot "><img src="assets/img/studio2.webp" alt="Pflegeprodukte" loading="lazy" decoding="async"></div><button class="fav" aria-label="Merken">♥</button>
         <div class="pcard-foot"><div><h4>Kräuterbad</h4><span>ab 9,50 €</span></div><i class="arr">↗</i></div>
       </article>
       <article class="pcard" data-tile="right" style="--d:260ms">
-        <div class="ph ph-h"></div><button class="fav" aria-label="Merken">♥</button>
+        <div class="ph shot "><img src="assets/img/travertin.webp" alt="Nagelöl auf Travertin" loading="lazy" decoding="async"></div><button class="fav" aria-label="Merken">♥</button>
         <div class="pcard-foot"><div><h4>Nagelöl</h4><span>ab 14,90 €</span></div><i class="arr">↗</i></div>
       </article>
     </div>
