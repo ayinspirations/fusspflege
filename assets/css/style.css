@@ -427,6 +427,11 @@ a.info:hover{transform:translateY(-4px);background:#fff}
   /* Vollbild-Hero: Text oben zentriert, Kacheln darunter, die untere Haelfte
      bleibt fuer das Motiv frei. */
   .hero{min-height:100svh;min-height:100dvh;justify-content:flex-start;padding:100px 0 44vh}
+  /* Mobil stehen die beiden Aktionen untereinander; die zweite ist kleiner und
+     kommt ohne Unterstreichung aus. */
+  .hero-cta{flex-direction:column;align-items:center;gap:4px}
+  .hero-link{font-size:13px;padding:12px 2px}
+  .hero-link::after{display:none}
   .hero-cards{display:none}
   .stats,.product-cards,.review-cards,.info-tiles{grid-template-columns:1fr 1fr}
   .flow-rail{height:clamp(280px,72vw,360px)}
