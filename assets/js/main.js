@@ -54,7 +54,7 @@
       e.target.classList.add('in-view');
       io.unobserve(e.target);
     });
-  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0.16, rootMargin: '0px 0px -14% 0px' });
   revealables.forEach((el) => io.observe(el));
 
   /* Kacheln in horizontal scrollbaren Reihen liegen oft ausserhalb des
@@ -68,8 +68,24 @@
       });
       railIo.unobserve(e.target);
     });
-  }, { threshold: 0.12 });
+    /* Spaeter Ausloeser: die Gruppe soll erst loslaufen, wenn sie wirklich im
+       Blick ist - sonst ist das Zusammenlaufen schon vorbei, bevor man sie
+       sieht. */
+  }, { threshold: 0.34, rootMargin: '0px 0px -16% 0px' });
   document.querySelectorAll('.flow-rail, .svc-stack, .hero-cards').forEach((r) => railIo.observe(r));
+
+  /* Sicherheitsnetz: wer sehr schnell scrollt oder per Sprungmarke landet,
+     kann die Schwelle ueberspringen - was dann schon oberhalb der Fenstermitte
+     liegt, wird ungefragt eingeblendet, damit nichts unsichtbar bleibt. */
+  const catchUp = () => {
+    document.querySelectorAll('[data-tile]:not(.in-view),[data-reveal]:not(.in-view)')
+      .forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.45) {
+          el.classList.add('in-view');
+          io.unobserve(el);
+        }
+      });
+  };
 
   /* ---- Header: verstecken beim Runterscrollen, Farbe wechseln ---- */
   const progress = document.getElementById('progress');
@@ -81,6 +97,8 @@
     progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
 
     document.body.classList.toggle('scrolled', y > (hero ? hero.offsetHeight - 120 : 400));
+
+    catchUp();
 
     /* Parallax im Hero */
     const media = document.querySelector('[data-parallax]');
