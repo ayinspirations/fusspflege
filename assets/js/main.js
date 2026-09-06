@@ -216,6 +216,18 @@
   }, { threshold: 0.6 });
   counters.forEach((c) => countIo.observe(c));
 
+  /* ---- Wohlfuehl-Momente: Pfeile blaettern durch die Reihe ---- */
+  const flowRail = document.querySelector('.flow-rail');
+  const flowStep = (dir) => {
+    if (!flowRail) return;
+    const card = flowRail.querySelector('.flow-card');
+    if (!card) return;
+    const step = card.getBoundingClientRect().width + 14;
+    flowRail.scrollBy({ left: dir * step, behavior: 'smooth' });
+  };
+  document.getElementById('flowNext')?.addEventListener('click', () => flowStep(1));
+  document.getElementById('flowPrev')?.addEventListener('click', () => flowStep(-1));
+
   /* ---- Merken-Herz ---- */
   document.querySelectorAll('.fav').forEach((b) =>
     b.addEventListener('click', () => b.classList.toggle('on')));

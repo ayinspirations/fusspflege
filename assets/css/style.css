@@ -125,9 +125,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .nav-burger{width:44px;height:44px;border-radius:0;display:none;place-items:center;gap:5px;
   flex-direction:column;background:none;border:0;padding:0;cursor:pointer}
 .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.35s var(--ease)}
-.nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
-.nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
-.nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+/* Die drei Balken sind 2px hoch mit 5px Abstand, ihre Mitten liegen also genau
+   7px auseinander - damit treffen sich die Enden sauber im Kreuz. */
+.nav-burger span{transform-origin:center;
+  transition:transform .4s var(--ease),opacity .18s linear .1s}
+.nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0;transition-delay:0s}
+.nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .brand{font-size:19px;font-weight:800;letter-spacing:-.04em;color:#fff;
   transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .nav-actions{transition:opacity .4s var(--ease),transform .4s var(--ease)}
@@ -323,9 +327,18 @@ button,input,select,textarea{font:inherit;color:inherit}
   backdrop-filter:blur(10px);color:#fff;font-size:13px;font-weight:500}
 .chip i{font-style:normal;opacity:.75}
 
+.flow-nav{display:none;gap:10px;justify-content:flex-end;
+  width:min(100% - 40px,var(--wrap));margin:18px auto 0}
+.flow-nav .hs-btn{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.flow-nav .hs-btn-dark{background:var(--accent);border-color:var(--accent);color:#fff}
+
 /* ============ Products ============ */
 .products{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
 .products-grid{display:grid;grid-template-columns:.7fr 1.6fr;gap:clamp(30px,4vw,60px)}
+/* Ohne min-width:0 nehmen Grid-Kinder ihre automatische Mindestbreite an und
+   werden breiter als ihre Spalte. */
+.products-grid>*,.product-cards>*,.reviews-grid>*,.review-cards>*,
+.services-grid>*,.about-grid>*,.booking-inner>*,.stats>*,.info-tiles>*{min-width:0}
 .products-intro{display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding:6px 0 40px}
 .products-kicker{font-size:clamp(15px,1.5vw,18px);color:var(--ink-2);line-height:1.5;max-width:26ch}
 .products-intro .btn{align-self:flex-start}
@@ -433,13 +446,30 @@ a.info:hover{transform:translateY(-4px);background:#fff}
   .hero-link{font-size:13px;padding:12px 2px}
   .hero-link::after{display:none}
   .hero-cards{display:none}
+  /* Leistungen: die Pille im Kopf entfaellt, die Kacheln bleiben ohne Text,
+     damit das Motiv erkennbar bleibt. */
+  #leistungen .head-row .btn{display:none}
+  .svc-card .svc-body,.svc-card .svc-badge{display:none}
+  /* Wohlfuehl-Momente: alle Kacheln gleich breit, Wechsel ueber die Pfeile. */
+  .flow-rail{height:auto;padding:8px 20px 20px;gap:14px;scroll-snap-type:x mandatory}
+  .flow-card,.flow-lead{width:calc(100vw - 40px);aspect-ratio:16/11;height:auto;
+    scroll-snap-align:center}
+  .flow-nav{display:flex}
+  /* Pflegekacheln: flacheres Bild, damit sie nicht die halbe Seite fuellen. */
+  .pcard .ph{aspect-ratio:4/3}
   .stats,.product-cards,.review-cards,.info-tiles{grid-template-columns:1fr 1fr}
-  .flow-rail{height:clamp(280px,72vw,360px)}
-  .flow-lead{width:min(560px,86vw)}
-  .flow-card{width:160px}
-  .svc-stack{aspect-ratio:4/3.4}
-  .svc-card{width:min(430px,80%)}
-  .flow-body p{display:none}
+  /* Mobil steht nur die gewaehlte Karte im Bild - fuer einen Stapel ist
+     schlicht kein Platz. */
+  .svc-stack{aspect-ratio:4/3.2;margin-right:0}
+  .svc-card{width:100%;transform:none;opacity:0;pointer-events:none;
+    transition:opacity .5s var(--ease),transform .6s var(--ease)}
+  .svc-card.is-active{opacity:1;pointer-events:auto}
+  .svc-slot.is-leaving .svc-card{transform:translateX(-14%) scale(.96)}
+  .flow-body{padding:18px}
+  .flow-body h3{font-size:20px}
+  .flow-body p{font-size:13px;max-width:none;padding-right:120px}
+  .flow-badge{width:74px;height:74px;top:16px;right:16px;font-size:10px}
+  .chip{right:16px;bottom:16px;padding:9px 15px;font-size:12px}
 }
 @media (max-width:560px){
   .stats,.product-cards,.review-cards,.info-tiles,.footer-grid{grid-template-columns:1fr}
