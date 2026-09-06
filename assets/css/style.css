@@ -231,24 +231,26 @@ button,input,select,textarea{font:inherit;color:inherit}
    die Stapel-Transformation der Karte nicht ueberschreibt. */
 .svc-stack{position:relative;aspect-ratio:16/9;max-height:min(460px,52vh);
   margin-right:calc(-1 * max(20px,(100vw - var(--wrap))/2 + 20px))}
-/* Jede Karte hat einen festen Platz im Stapel (--n = ihr Index). Beim Wechsel
-   bewegt sich nur die abgeloeste Karte: sie zieht nach links weg. Die uebrigen
-   bleiben stehen, wo sie sind. */
-.svc-slot{position:absolute;inset:0;z-index:calc(10 - var(--n,0))}
+/* --i ist der Abstand zur aktiven Karte: 0 vorn, danach nach rechts versetzt
+   und verkleinert. Beim Wechsel ruecken alle eine Position nach vorn. */
+.svc-slot{position:absolute;inset:0;z-index:calc(10 - var(--i,0))}
 .svc-card{position:absolute;inset:0;border-radius:var(--r-l);overflow:hidden;
   width:min(430px,64%);box-shadow:var(--shadow);cursor:pointer;
-  transform:translateX(calc(var(--n,0) * 41%)) scale(calc(1 - var(--n,0) * .05));
+  transform:translateX(calc(var(--i,0) * 41%)) scale(calc(1 - var(--i,0) * .05));
   transform-origin:left center;
   transition:transform .8s var(--ease),filter .8s var(--ease),opacity .55s var(--ease)}
 /* Die abgeloeste Karte wuerde sonst quer auf den letzten Stapelplatz springen.
    Stattdessen zieht sie nach links weg und blendet aus; erst danach nimmt sie
    ihre Position hinten im Stapel ein - ohne Animation, damit man den Sprung
    nicht sieht. */
-/* Abgeraeumte Karten liegen links ausserhalb und sind ausgeblendet. */
-.svc-slot.is-gone{z-index:0;pointer-events:none}
-.svc-slot.is-gone .svc-card{
+/* Die abgeloeste Karte wuerde sonst quer auf den letzten Stapelplatz springen.
+   Sie zieht nach links weg und blendet aus; ihren Platz hinten nimmt sie erst
+   danach ein, ohne Animation. */
+.svc-slot.is-leaving{z-index:20}
+.svc-slot.is-leaving .svc-card{
   transform:translateX(-42%) scale(.9);opacity:0;filter:blur(5px)}
-.svc-card:not(.is-active){filter:brightness(calc(1 - var(--n,0) * .06)) saturate(.92)}
+.svc-slot.is-settling .svc-card{transition:none}
+.svc-card:not(.is-active){filter:brightness(calc(1 - var(--i,0) * .06)) saturate(.92)}
 .svc-card .ph{position:absolute;inset:0}
 .svc-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px;color:#fff;
   background:linear-gradient(to top,rgba(25,14,10,.88),rgba(25,14,10,.05))}

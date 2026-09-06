@@ -128,20 +128,41 @@
   const svcPanes = [...document.querySelectorAll('.svc-card')];
   const svcCount = svcPanes.length;
 
+  const LEAVE_MS = 620;
   let activeSvc = 0;
 
-  /* Die Karten behalten ihren Platz im Stapel. Alles vor der aktiven Karte ist
-     nach links abgeraeumt, ab der aktiven bleibt alles stehen. */
-  svcSlots.forEach((slot, n) => slot.style.setProperty('--n', n));
+  const setRanks = (active) => {
+    svcItems.forEach((el, n) => el.classList.toggle('is-active', n === active));
+    svcSlots.forEach((slot, n) => {
+      const rank = (n - active + svcCount) % svcCount;
+      slot.style.setProperty('--i', rank);
+      svcPanes[n].classList.toggle('is-active', rank === 0);
+    });
+  };
 
   const showSvc = (i) => {
-    const active = Math.min(Math.max(i, 0), svcCount - 1);
+    const active = ((i % svcCount) + svcCount) % svcCount;
+    if (active === activeSvc) return;
+
+    const leaving = svcSlots[activeSvc];
     activeSvc = active;
-    svcItems.forEach((el, n) => el.classList.toggle('is-active', n === active));
-    svcSlots.forEach((slot, n) => slot.classList.toggle('is-gone', n < active));
-    svcPanes.forEach((el, n) => el.classList.toggle('is-active', n === active));
+    setRanks(active);
+
+    /* Die bisher vordere Karte zieht nach links weg statt quer nach hinten zu
+       springen; ihren Stapelplatz nimmt sie danach ohne Animation ein. */
+    if (leaving) {
+      clearTimeout(leaving._settle);
+      leaving.classList.remove('is-settling');
+      leaving.classList.add('is-leaving');
+      leaving._settle = setTimeout(() => {
+        leaving.classList.add('is-settling');
+        leaving.classList.remove('is-leaving');
+        void leaving.offsetWidth;
+        leaving.classList.remove('is-settling');
+      }, LEAVE_MS);
+    }
   };
-  showSvc(0);
+  setRanks(0);
 
   svcItems.forEach((el, i) => {
     el.addEventListener('mouseenter', () => showSvc(i));

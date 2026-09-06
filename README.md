@@ -34,12 +34,13 @@ der Historie oder per `sharp`-Einzeiler.
 | Verwendung | Datei |
 |---|---|
 | Hero | `Fusspflege Sandra Leonberg.png` |
-| Hero-Kacheln 1–4 | `01_gepflegte_fuesse` … `04_wellness_handtuecher` |
+| Hero-Kacheln 1–4 | dieselben Motive wie die vier Leistungen |
 | Studio-Kacheln (Über uns) | `studio1`, `studio2`, `studio3` |
 | Leistung Wellness-Fußpflege | `wellness-fusspflege.png` |
 | Leistung Sportlerfüße | `sportlerfusse.png` |
-| Leistung Diabetisch | **fehlt** – aktuell `studio2` als Platzhalter |
-| Leistung Eingewachsene Nägel | **fehlt** – aktuell `03_spa_travertin` als Platzhalter |
+| Leistung Diabetisch | **fehlt** – aktuell `01_gepflegte_fuesse` als Platzhalter |
+| Leistung Eingewachsene Nägel | **fehlt** – aktuell `studio1` als Platzhalter |
+| Ablauf, Pflegeprodukte | `02_wellness_serum`, `03_spa_travertin`, `04_wellness_handtuecher`, `studio2` |
 
 ## Offene Punkte
 1. **Inhalte der Altseite** – Crawl von https://fusspflege-wellness-leonberg.de war
