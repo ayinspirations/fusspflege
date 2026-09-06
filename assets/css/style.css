@@ -115,7 +115,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ============ Hero ============ */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:130px 0 210px;overflow:hidden;border-radius:0 0 var(--r-xl) var(--r-xl)}
+  padding:130px 0 210px;overflow:hidden}
 .hero-media{position:absolute;inset:0;z-index:-2}
 .hero-media{background:linear-gradient(245deg,#6a3f2e,#a0705d 46%,#c29685 78%)}
 /* Das Motiv ist ein breites Banner; die Fuesse liegen buendig an einer Kante.
@@ -143,18 +143,24 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero-play:hover .play-ring{background:rgba(255,255,255,.18);transform:scale(1.08)}
 .play-label{font-size:13px;line-height:1.35;opacity:.9}
 .hero-cards{position:absolute;right:3%;bottom:56px;z-index:2;display:flex;gap:12px;max-width:64vw}
-.hcard{position:relative;width:126px;height:146px;border-radius:var(--r-m);overflow:hidden;
+/* Die Motive sind Hochformat - die Kacheln folgen dem Seitenverhaeltnis, sonst
+   steht der helle Bildhintergrund als Kasten im dunklen Hero. */
+.hcard{position:relative;width:132px;aspect-ratio:3/4;border-radius:var(--r-m);overflow:hidden;
   padding:0;border:0;cursor:pointer;background:none;text-align:left;
-  box-shadow:var(--shadow);transition:transform .5s var(--ease),width .5s var(--ease)}
-.hcard:hover,.hcard:focus-visible{transform:translateY(-10px)}
-.hcard .ph{position:absolute;inset:0;border-radius:inherit}
+  box-shadow:0 18px 40px -26px rgba(40,20,12,.7);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
+.hcard:hover,.hcard:focus-visible{transform:translateY(-10px);
+  box-shadow:0 26px 54px -24px rgba(40,20,12,.8)}
+.hcard .ph{position:absolute;inset:0;border-radius:inherit;background:none}
+.hcard img{transform:scale(1.06);transition:transform .8s var(--ease),opacity .7s var(--ease)}
+.hcard:hover img,.hcard:focus-visible img{transform:scale(1.16)}
 .hcard-arrow{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;
   display:grid;place-items:center;background:rgba(255,255,255,.85);font-size:12px;
   transition:transform .4s var(--ease),opacity .4s}
 .hcard:hover .hcard-arrow{transform:rotate(45deg) scale(1.05)}
 /* Ueberschrift und Text liegen still unter einem Verlauf und kommen beim
    Hover hoch. */
-.hcard-body{position:absolute;left:0;right:0;bottom:0;padding:14px 13px;color:#fff;
+.hcard-body{position:absolute;left:0;right:0;bottom:0;padding:14px 12px;color:#fff;z-index:2;
   display:flex;flex-direction:column;gap:5px;
   background:linear-gradient(to top,rgba(25,14,10,.9),rgba(25,14,10,.45) 55%,transparent);
   opacity:0;transform:translateY(14px);
@@ -184,12 +190,6 @@ button,input,select,textarea{font:inherit;color:inherit}
   color:#fff;font-size:13.5px;font-weight:500;transition:background .35s,transform .35s var(--ease)}
 .tag:hover{background:rgba(255,255,255,.24);transform:translateY(-3px)}
 .tag i{font-style:normal;opacity:.7}
-
-/* ============ Marquee ============ */
-.marquee{overflow:hidden;background:var(--ink);color:#fff;padding:16px 0}
-.marquee-track{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:slide 34s linear infinite}
-.marquee-track span{font-size:14px;letter-spacing:.04em;opacity:.85}
-@keyframes slide{to{transform:translateX(-50%)}}
 
 /* ============ About ============ */
 .about-grid{display:grid;grid-template-columns:1fr .8fr 1.25fr;gap:26px;align-items:start}
@@ -318,7 +318,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .rcard footer span{font-size:13px;color:var(--ink-2)}
 
 /* ============ Booking ============ */
-.booking{background:var(--bg-2);border-radius:var(--r-xl) var(--r-xl) 0 0}
+.booking{background:var(--bg-2)}
 .booking-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,4vw,64px);align-items:start}
 .info-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:36px}
 .info{background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:var(--r-m);
@@ -367,10 +367,7 @@ a.info:hover{transform:translateY(-4px);background:#fff}
   /* Vollbild-Hero: Text oben zentriert, Kacheln darunter, die untere Haelfte
      bleibt fuer das Motiv frei. */
   .hero{min-height:100svh;justify-content:flex-start;padding:104px 0 46vh}
-  .hero-cards{position:static;margin:26px auto 0;max-width:none;
-    width:min(100% - 40px,var(--wrap));overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
-  .hero-cards::-webkit-scrollbar{display:none}
-  .hcard{flex:0 0 auto}
+  .hero-cards{display:none}
   .stats,.product-cards,.review-cards,.info-tiles{grid-template-columns:1fr 1fr}
   .flow-rail{height:clamp(280px,72vw,360px)}
   .flow-lead{width:min(560px,86vw)}
