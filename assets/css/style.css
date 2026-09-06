@@ -63,7 +63,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .shot{background:linear-gradient(150deg,#e9d5ca,#c79a83)}
 .shot::after{content:none}
 .shot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  border-radius:inherit;opacity:0;transition:opacity .7s var(--ease)}
+  border-radius:inherit;opacity:0;
+  transition:opacity .7s var(--ease),transform .8s var(--ease)}
+/* Beim Hover zieht das Motiv leicht an - gilt fuer alle Bildkacheln. */
+.tile:hover .shot>img,
+.svc-card:hover .shot>img,
+.flow-card:hover .shot>img,
+.pcard:hover .shot>img,
+.svc:hover .svc-thumb>img{transform:scale(1.07)}
 .shot>img.loaded,.no-js .shot>img{opacity:1}
 .svc-thumb.shot>img{position:static;border-radius:50%}
 
@@ -97,9 +104,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .nav-shell,.nav-actions{display:flex;align-items:center;gap:10px}
 .nav-pills{display:flex;gap:6px;padding:6px;border-radius:999px;
   background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.28)}
-.pill{padding:11px 22px;border-radius:999px;font-size:14px;font-weight:500;color:#fff;
+.pill:not(.pill-cta){padding:11px 22px;border-radius:999px;font-size:14px;font-weight:500;color:#fff;
   transition:background .35s,color .35s}
 .pill.is-active,.pill:hover{background:#fff;color:var(--ink)}
+.pill-cta{display:none;padding:13px 22px;border-radius:999px;font-size:14px;font-weight:600}
 .nav-burger{width:44px;height:44px;border-radius:0;display:none;place-items:center;gap:5px;
   flex-direction:column;background:none;border:0;padding:0;cursor:pointer}
 .nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.35s var(--ease)}
@@ -226,21 +234,24 @@ button,input,select,textarea{font:inherit;color:inherit}
    die Stapel-Transformation der Karte nicht ueberschreibt. */
 .svc-stack{position:relative;aspect-ratio:16/9;max-height:min(460px,52vh);
   margin-right:calc(-1 * max(20px,(100vw - var(--wrap))/2 + 20px))}
-.svc-slot{position:absolute;inset:0;z-index:calc(10 - var(--i,0))}
+/* Jede Karte hat einen festen Platz im Stapel (--n = ihr Index). Beim Wechsel
+   bewegt sich nur die abgeloeste Karte: sie zieht nach links weg. Die uebrigen
+   bleiben stehen, wo sie sind. */
+.svc-slot{position:absolute;inset:0;z-index:calc(10 - var(--n,0))}
 .svc-card{position:absolute;inset:0;border-radius:var(--r-l);overflow:hidden;
-  width:min(430px,66%);box-shadow:var(--shadow);cursor:pointer;
-  transform:translateX(calc(var(--i,0) * 58%)) scale(calc(1 - var(--i,0) * .06));
+  width:min(430px,64%);box-shadow:var(--shadow);cursor:pointer;
+  transform:translateX(calc(var(--n,0) * 41%)) scale(calc(1 - var(--n,0) * .05));
   transform-origin:left center;
   transition:transform .8s var(--ease),filter .8s var(--ease),opacity .55s var(--ease)}
 /* Die abgeloeste Karte wuerde sonst quer auf den letzten Stapelplatz springen.
    Stattdessen zieht sie nach links weg und blendet aus; erst danach nimmt sie
    ihre Position hinten im Stapel ein - ohne Animation, damit man den Sprung
    nicht sieht. */
-.svc-slot.is-leaving{z-index:20}
-.svc-slot.is-leaving .svc-card{
-  transform:translateX(-38%) scale(.92);opacity:0;filter:blur(5px)}
-.svc-slot.is-settling .svc-card{transition:none}
-.svc-card:not(.is-active){filter:brightness(calc(1 - var(--i,0) * .07)) saturate(.9)}
+/* Abgeraeumte Karten liegen links ausserhalb und sind ausgeblendet. */
+.svc-slot.is-gone{z-index:0;pointer-events:none}
+.svc-slot.is-gone .svc-card{
+  transform:translateX(-42%) scale(.9);opacity:0;filter:blur(5px)}
+.svc-card:not(.is-active){filter:brightness(calc(1 - var(--n,0) * .06)) saturate(.92)}
 .svc-card .ph{position:absolute;inset:0}
 .svc-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px;color:#fff;
   background:linear-gradient(to top,rgba(25,14,10,.88),rgba(25,14,10,.05))}
@@ -258,16 +269,16 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ============ Flow ============ */
 /* Breite Leitkarte links, schmalere Bildkarten daneben, die zum rechten Rand
    auslaufen - Kopfzeile und Leitkarte stehen auf derselben Fluchtlinie. */
-.flow-rail{width:100%;padding-left:max(20px,(100vw - var(--wrap))/2);padding-right:20px;
-  display:flex;gap:16px;align-items:stretch;height:clamp(300px,32vw,400px);
-  overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+/* Die Reihe ist gegenueber der Ueberschrift eingerueckt; die breite Leitkachel
+   ist ein 16:9-Rechteck, die schmalen Bildkacheln laufen zum rechten Rand aus. */
+.flow-rail{width:100%;padding-left:calc(max(20px,(100vw - var(--wrap))/2) + 5vw);padding-right:0;
+  display:flex;gap:10px;align-items:stretch;height:clamp(250px,29vw,440px);
+  overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
 .flow-rail::-webkit-scrollbar{display:none}
-.flow-card{position:relative;flex:0 0 auto;height:100%;width:210px;
-  border-radius:var(--r-l);overflow:hidden;scroll-snap-align:start;
-  box-shadow:var(--shadow);transition:transform .5s var(--ease)}
-.flow-card:hover{transform:translateY(-8px)}
+.flow-card{position:relative;flex:0 0 auto;height:100%;width:clamp(100px,11vw,160px);
+  border-radius:var(--r-m);overflow:hidden;box-shadow:var(--shadow)}
 .flow-card .ph{position:absolute;inset:0}
-.flow-lead{width:min(620px,62vw)}
+.flow-lead{width:auto;aspect-ratio:16/9}
 .flow-lead::after{content:"";position:absolute;inset:0;
   background:linear-gradient(105deg,rgba(120,52,34,.72),rgba(120,52,34,.18) 62%,transparent)}
 .flow-badge{position:absolute;top:24px;right:24px;z-index:2;width:96px;height:96px;
@@ -371,13 +382,18 @@ a.info:hover{transform:translateY(-4px);background:#fff}
 }
 @media (max-width:820px){
   .nav-pills{display:none}
-  /* Burger sitzt aussen rechts und bleibt immer sichtbar. */
-  .brand{order:1;margin-right:auto}
-  .nav-actions{order:2;margin-left:auto}
+  /* Marke links, Burger aussen rechts - beide mittig auf einer Linie.
+     Der Termin-Button entfaellt hier und steht stattdessen im Menue. */
+  .site-header{align-items:center}
+  .brand{order:1;margin-right:auto;line-height:44px}
+  .nav-actions{display:none}
   .nav-shell{order:3}
   .nav-pills.open{display:flex;position:fixed;top:80px;left:16px;right:16px;flex-direction:column;
     background:#fff;border-color:var(--line);border-radius:var(--r-m);padding:12px;box-shadow:var(--shadow)}
   .nav-pills.open .pill{color:var(--ink);text-align:center}
+  .pill-cta{background:var(--ink);color:#fff;margin-top:4px}
+  .nav-pills.open .pill-cta{display:block;color:#fff}
+  .nav-pills.open .pill-cta:hover{background:var(--clay)}
   .nav-burger{display:flex}
   /* Vollbild-Hero: Text oben zentriert, Kacheln darunter, die untere Haelfte
      bleibt fuer das Motiv frei. */
@@ -404,8 +420,7 @@ a.info:hover{transform:translateY(-4px);background:#fff}
   .hero-play{display:none}
 }
 @media (max-width:430px){
-  .brand{font-size:14px}
-  .nav-actions .btn-dark{padding:11px 13px;font-size:12px}
+  .brand{font-size:15px}
 }
 
 /* Ohne Hover (Touch) gibt es kein Aufdecken – dort stehen die Texte dauerhaft. */
