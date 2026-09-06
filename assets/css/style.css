@@ -228,7 +228,15 @@ button,input,select,textarea{font:inherit;color:inherit}
   width:min(430px,66%);box-shadow:var(--shadow);cursor:pointer;
   transform:translateX(calc(var(--i,0) * 58%)) scale(calc(1 - var(--i,0) * .06));
   transform-origin:left center;
-  transition:transform .8s var(--ease),filter .8s var(--ease)}
+  transition:transform .8s var(--ease),filter .8s var(--ease),opacity .55s var(--ease)}
+/* Die abgeloeste Karte wuerde sonst quer auf den letzten Stapelplatz springen.
+   Stattdessen zieht sie nach links weg und blendet aus; erst danach nimmt sie
+   ihre Position hinten im Stapel ein - ohne Animation, damit man den Sprung
+   nicht sieht. */
+.svc-slot.is-leaving{z-index:20}
+.svc-slot.is-leaving .svc-card{
+  transform:translateX(-38%) scale(.92);opacity:0;filter:blur(5px)}
+.svc-slot.is-settling .svc-card{transition:none}
 .svc-card:not(.is-active){filter:brightness(calc(1 - var(--i,0) * .07)) saturate(.9)}
 .svc-card .ph{position:absolute;inset:0}
 .svc-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px;color:#fff;
