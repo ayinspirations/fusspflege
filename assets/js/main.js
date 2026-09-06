@@ -2,6 +2,50 @@
 (() => {
   'use strict';
 
+  /* ---- Ruhiger Seitenwechsel ----
+     Das native smooth-scroll rauscht ueber lange Strecken viel zu schnell
+     durch. Hier laeuft die Bewegung ueber eine feste, distanzabhaengige Dauer
+     mit weichem An- und Auslauf. */
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  let scrollAnim = 0;
+
+  const scrollToY = (to) => {
+    const from = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const target = Math.max(0, Math.min(to, max));
+    const dist = Math.abs(target - from);
+    if (reduceMotion || dist < 4) { window.scrollTo(0, target); return; }
+
+    /* rund 0,9 s fuer kurze Wege, hoechstens 2,4 s fuer die ganze Seite */
+    const duration = Math.min(2400, 900 + dist * 0.55);
+    const start = performance.now();
+    cancelAnimationFrame(scrollAnim);
+    const step = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      window.scrollTo(0, from + (target - from) * easeInOut(t));
+      if (t < 1) scrollAnim = requestAnimationFrame(step);
+    };
+    scrollAnim = requestAnimationFrame(step);
+  };
+
+  const scrollToEl = (el) => {
+    if (!el) return;
+    scrollToY(el.getBoundingClientRect().top + window.scrollY - 84);
+  };
+
+  /* Jeder Sprungmarken-Link nutzt denselben ruhigen Lauf. */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const id = link.getAttribute('href');
+    if (id.length < 2) return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    scrollToEl(target);
+  });
+
   /* ---- Scroll-Reveal: Kacheln fliegen ein ---- */
   const revealables = document.querySelectorAll('[data-reveal],[data-tile]');
   const io = new IntersectionObserver((entries) => {
@@ -110,8 +154,7 @@
     card.addEventListener('click', () => {
       const i = Number(card.dataset.svcLink);
       showSvc(i);
-      document.getElementById('leistungen')
-        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToEl(document.getElementById('leistungen'));
     });
   });
 
