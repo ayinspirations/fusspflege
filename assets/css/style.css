@@ -291,6 +291,30 @@ button,input,select,textarea{font:inherit;color:inherit}
 .svc-card .svc-badge,.svc-card .svc-body{opacity:0;transition:opacity .5s var(--ease)}
 .svc-card.is-active .svc-badge,.svc-card.is-active .svc-body{opacity:1}
 
+/* ============ Behandlungsliste ============ */
+.treatment{margin-top:clamp(46px,6vw,80px);
+  display:grid;grid-template-columns:.72fr 1.55fr;gap:clamp(28px,4vw,60px);align-items:start}
+.treatment-title{font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.02em}
+.treatment-list{list-style:none;margin:0;padding:0;
+  columns:2;column-gap:clamp(28px,4vw,56px)}
+.treatment-list li{break-inside:avoid;display:flex;gap:12px;align-items:flex-start;
+  padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5}
+.treatment-list i{font-style:normal;color:var(--clay);font-size:12px;line-height:1.7;flex:0 0 auto}
+.treatment-list strong{font-weight:700}
+
+/* ============ Hausbesuch ============ */
+.homevisit{padding-top:0}
+.homevisit-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,64px);
+  align-items:center;background:var(--bg-2);border-radius:var(--r-l);
+  padding:clamp(26px,3.4vw,46px)}
+.homevisit-inner>*{min-width:0}
+.homevisit-media{aspect-ratio:16/11;border-radius:var(--r-m);overflow:hidden}
+.homevisit-note{display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+  padding:11px 20px;border-radius:999px;background:#fff;border:1px solid var(--line);
+  font-size:13.5px;font-weight:500}
+.homevisit-note i{font-style:normal;color:var(--clay)}
+.homevisit-copy .btn{margin-top:22px}
+
 /* ============ Flow ============ */
 /* Akkordeon: die geoeffnete Kachel ist breit und traegt Titel, Text und Chip,
    die uebrigen stehen als schmale Bildstreifen daneben. Ein Klick tauscht die
@@ -419,7 +443,9 @@ a.info:hover{transform:translateY(-4px);background:#fff}
 
 /* ============ Responsive ============ */
 @media (max-width:1080px){
-  .about-grid,.services-grid,.products-grid,.reviews-grid,.booking-inner{grid-template-columns:1fr}
+  .about-grid,.services-grid,.products-grid,.reviews-grid,.booking-inner,
+  .treatment,.homevisit-inner{grid-template-columns:1fr}
+  .treatment-list{columns:1}
   .svc-stack{aspect-ratio:16/13}
   .svc-card{width:min(430px,74%)}
   .rcol-a{padding-top:0}

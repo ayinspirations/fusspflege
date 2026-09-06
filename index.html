@@ -24,6 +24,7 @@
     <nav class="nav-pills" id="navPills">
       <a href="#home" class="pill is-active">Home</a>
       <a href="#leistungen" class="pill">Leistungen</a>
+      <a href="#hausbesuch" class="pill">Hausbesuch</a>
       <a href="#ueber-uns" class="pill">Über uns</a>
       <a href="#termin" class="pill pill-cta">Termin buchen</a>
     </nav>
@@ -65,20 +66,26 @@
       <span class="hcard-body"><b>Wellness-Fußpflege</b><span>Bad, Peeling &amp; Massage</span></span>
     </button>
     <button class="hcard" data-tile="right" style="--d:840ms" data-svc-link="1"
+            aria-label="Wellness-Pediküre – zu den Leistungen springen">
+      <div class="ph shot"><img src="assets/img/fuesse.webp" alt="Wellness-Pediküre" fetchpriority="high" decoding="async"></div>
+      <span class="hcard-arrow">↗</span>
+      <span class="hcard-body"><b>Wellness-Pediküre</b><span>Brasilianische Art</span></span>
+    </button>
+    <button class="hcard" data-tile="right" style="--d:1160ms" data-svc-link="2"
             aria-label="Sportlerfüße – zu den Leistungen springen">
       <div class="ph shot"><img src="assets/img/sportler.webp" alt="Sportlerfüße" fetchpriority="high" decoding="async"></div>
       <span class="hcard-arrow">↗</span>
       <span class="hcard-body"><b>Sportlerfüße</b><span>Für beanspruchte Füße</span></span>
     </button>
-    <button class="hcard" data-tile="right" style="--d:1160ms" data-svc-link="2"
+    <button class="hcard" data-tile="right" style="--d:1480ms" data-svc-link="3"
             aria-label="Diabetische Fußpflege – zu den Leistungen springen">
-      <div class="ph shot"><img src="assets/img/fuesse.webp" alt="Diabetische Fußpflege" fetchpriority="high" decoding="async"></div>
+      <div class="ph shot"><img src="assets/img/studio1.webp" alt="Diabetische Fußpflege" fetchpriority="high" decoding="async"></div>
       <span class="hcard-arrow">↗</span>
       <span class="hcard-body"><b>Diabetische Fußpflege</b><span>Behutsam &amp; vorbeugend</span></span>
     </button>
-    <button class="hcard" data-tile="right" style="--d:1480ms" data-svc-link="3"
+    <button class="hcard" data-tile="right" style="--d:1800ms" data-svc-link="4"
             aria-label="Eingewachsene Nägel – zu den Leistungen springen">
-      <div class="ph shot"><img src="assets/img/studio1.webp" alt="Eingewachsene Nägel" fetchpriority="high" decoding="async"></div>
+      <div class="ph shot"><img src="assets/img/studio3.webp" alt="Eingewachsene Nägel" fetchpriority="high" decoding="async"></div>
       <span class="hcard-arrow">↗</span>
       <span class="hcard-body"><b>Eingewachsene Nägel</b><span>Korrektur mit Spange</span></span>
     </button>
@@ -99,55 +106,94 @@
         <span class="svc-thumb ph shot"><img src="assets/img/t-wellness.webp" alt="Wellness-Fußpflege" loading="lazy" decoding="async"></span><span class="svc-name">Wellness-Fußpflege</span><span class="svc-go">↗</span>
       </li>
       <li class="svc" data-svc="1" data-tile="left" style="--d:90ms">
-        <span class="svc-thumb ph shot"><img src="assets/img/t-sportler.webp" alt="Sportlerfüße" loading="lazy" decoding="async"></span><span class="svc-name">Sportlerfüße</span><span class="svc-go">↗</span>
+        <span class="svc-thumb ph shot"><img src="assets/img/t-pedikuere.webp" alt="Wellness-Pediküre" loading="lazy" decoding="async"></span><span class="svc-name">Wellness-Pediküre</span><span class="svc-go">↗</span>
       </li>
       <li class="svc" data-svc="2" data-tile="left" style="--d:180ms">
-        <span class="svc-thumb ph shot"><img src="assets/img/t-diabetisch.webp" alt="Diabetische Fußpflege" loading="lazy" decoding="async"></span><span class="svc-name">Diabetische Fußpflege</span><span class="svc-go">↗</span>
+        <span class="svc-thumb ph shot"><img src="assets/img/t-sportler.webp" alt="Sportlerfüße" loading="lazy" decoding="async"></span><span class="svc-name">Sportlerfüße</span><span class="svc-go">↗</span>
       </li>
       <li class="svc" data-svc="3" data-tile="left" style="--d:270ms">
+        <span class="svc-thumb ph shot"><img src="assets/img/t-diabetisch.webp" alt="Diabetische Fußpflege" loading="lazy" decoding="async"></span><span class="svc-name">Diabetische Fußpflege</span><span class="svc-go">↗</span>
+      </li>
+      <li class="svc" data-svc="4" data-tile="left" style="--d:360ms">
         <span class="svc-thumb ph shot"><img src="assets/img/t-eingewachsen.webp" alt="Eingewachsene Nägel" loading="lazy" decoding="async"></span><span class="svc-name">Eingewachsene Nägel</span><span class="svc-go">↗</span>
       </li>
     </ul>
 
     <div class="svc-stack" id="svcStack">
       <div class="svc-slot" data-tile="right" style="--d:0ms"><article class="svc-card is-active" data-pane="0">
-        <div class="ph shot "><img src="assets/img/wellness.webp" alt="Wellness-Fußpflege" loading="lazy" decoding="async"></div>
+        <div class="ph shot"><img src="assets/img/wellness.webp" alt="Wellness-Fußpflege" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Wellness-Fußpflege</h3>
-          <p>Kräuter-Fußbad, Peeling, gründliche Nagel- und Hautpflege und eine entspannende
-             Fußmassage mit Gehwol®-Produkten – auf Wunsch mit Lack in Naturtönen.</p>
+          <p>Kräuter-Fußbad, Peeling, gründliche Nagel- und Hautpflege und zum Abschluss eine entspannende Fußmassage mit Gehwol®-Produkten.</p>
         </div>
       </article></div>
       <div class="svc-slot" data-tile="right" style="--d:120ms"><article class="svc-card" data-pane="1">
-        <div class="ph shot "><img src="assets/img/sportler.webp" alt="Sportlerfüße" loading="lazy" decoding="async"></div>
+        <div class="ph shot"><img src="assets/img/fuesse.webp" alt="Wellness-Pediküre" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
-          <h3>Sportlerfüße</h3>
-          <p>Regeneration für stark beanspruchte Füße: Druckstellen, Hornhaut und beanspruchte
-             Nägel werden schonend behandelt.</p>
+          <h3>Wellness-Pediküre</h3>
+          <p>Komplette Fußbehandlung nach brasilianischer Tradition – inklusive Kräuter-Fußbad, Peeling, gründlicher Nagel- und Hautpflege sowie perfekter Lackierung mit Naturlack für ein makelloses Ergebnis.</p>
         </div>
       </article></div>
       <div class="svc-slot" data-tile="right" style="--d:240ms"><article class="svc-card" data-pane="2">
-        <!-- Platzhalter: "diabetische fusspflege.png" fehlt noch im Repo -->
-        <div class="ph shot "><img src="assets/img/fuesse.webp" alt="Diabetische Fußpflege" loading="lazy" decoding="async"></div>
+        <div class="ph shot"><img src="assets/img/sportler.webp" alt="Sportlerfüße" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
-          <h3>Diabetische Fußpflege</h3>
-          <p>Kosmetische Fachfußpflege zur Vorbeugung – besonders behutsam, hygienisch und
-             aufmerksam auf jede Veränderung der Haut.</p>
+          <h3>Sportlerfüße</h3>
+          <p>Regeneration für stark beanspruchte Füße: Druckstellen, Hornhaut und beanspruchte Nägel werden schonend behandelt.</p>
         </div>
       </article></div>
       <div class="svc-slot" data-tile="right" style="--d:360ms"><article class="svc-card" data-pane="3">
+        <!-- Platzhalter: "diabetische fusspflege.png" fehlt noch im Repo -->
+        <div class="ph shot"><img src="assets/img/studio1.webp" alt="Diabetische Fußpflege" loading="lazy" decoding="async"></div>
+        <div class="svc-badge"><i>↗</i><span>Details</span></div>
+        <div class="svc-body">
+          <h3>Diabetische Fußpflege</h3>
+          <p>Im Rahmen der kosmetischen Fachfußpflege zur Vorsorge – besonders behutsam, hygienisch und aufmerksam auf jede Veränderung der Haut.</p>
+        </div>
+      </article></div>
+      <div class="svc-slot" data-tile="right" style="--d:480ms"><article class="svc-card" data-pane="4">
         <!-- Platzhalter: "eingewachsene.png" fehlt noch im Repo -->
-        <div class="ph shot "><img src="assets/img/studio1.webp" alt="Eingewachsene Nägel" loading="lazy" decoding="async"></div>
+        <div class="ph shot"><img src="assets/img/studio3.webp" alt="Eingewachsene Nägel" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Eingewachsene Nägel</h3>
-          <p>Behandlung mit Nagelkorrektur-Spangensystemen – für spürbare Entlastung und ein
-             gesundes Nagelwachstum.</p>
+          <p>Pflege bei eingewachsenen Nägeln und Nagelkorrektur-Systeme – für spürbare Entlastung und ein gesundes Nagelwachstum.</p>
         </div>
       </article></div>
+    </div>
+  </div>
+
+  <div class="wrap treatment">
+    <h3 class="treatment-title" data-reveal>Das gehört zur Behandlung</h3>
+    <ul class="treatment-list">
+      <li data-tile="up" style="--d:0ms"><i>✻</i><span>Gründliche Fußpflege bei <strong>Hornhaut</strong> und Druckstellen</span></li>
+      <li data-tile="up" style="--d:70ms"><i>✻</i><span>Pflege von <strong>verdickten Nägeln</strong> und Holznägeln</span></li>
+      <li data-tile="up" style="--d:140ms"><i>✻</i><span>Korrekte Kürzung und Formung der Nägel</span></li>
+      <li data-tile="up" style="--d:210ms"><i>✻</i><span>Sanfte Entfernung von <strong>Hühneraugen</strong></span></li>
+      <li data-tile="up" style="--d:280ms"><i>✻</i><span>Linderung bei leichten Beschwerden und Schmerzen am Fuß</span></li>
+      <li data-tile="up" style="--d:350ms"><i>✻</i><span><strong>Wellness-Fußpflege</strong> inkl. Kräuter-Fußbad und Peeling</span></li>
+      <li data-tile="up" style="--d:420ms"><i>✻</i><span>Entspannende Fußmassage mit <strong>Gehwol®</strong>-Produkten zum Abschluss</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ HAUSBESUCH ══════════ -->
+<section class="section homevisit" id="hausbesuch">
+  <div class="wrap homevisit-inner">
+    <!-- Platzhalter: das Foto der mobilen Praxis fehlt noch im Repo -->
+    <div class="homevisit-media tile" data-tile="left">
+      <div class="ph shot"><img src="assets/img/handtuecher.webp" alt="Mobile Praxis" loading="lazy" decoding="async"></div>
+    </div>
+    <div class="homevisit-copy">
+      <p class="eyebrow" data-reveal>Mobil</p>
+      <h2 class="h2" data-reveal>Hausbesuch mit<br><b>mobiler Praxis</b></h2>
+      <p class="lead" data-reveal>Auf Wunsch kommen wir mit der mobilen Praxis zu Ihnen nach Hause.</p>
+      <p class="homevisit-note" data-tile="up" style="--d:120ms">
+        <i>✻</i> Nur für Pflegefälle nach Absprache
+      </p>
+      <a href="#termin" class="btn btn-dark" data-tile="up" style="--d:200ms">Hausbesuch anfragen</a>
     </div>
   </div>
 </section>
@@ -353,9 +399,11 @@
       <label>Behandlung
         <select name="service">
           <option>Wellness-Fußpflege</option>
+          <option>Wellness-Pediküre (brasilianische Art)</option>
           <option>Sportlerfüße</option>
           <option>Diabetische Fußpflege</option>
           <option>Eingewachsene Nägel / Nagelkorrektur</option>
+          <option>Hausbesuch mit mobiler Praxis</option>
         </select>
       </label>
       <label>Nachricht <textarea name="msg" rows="3" placeholder="Ihr Wunschtermin"></textarea></label>
@@ -374,6 +422,7 @@
     <nav data-tile="up" style="--d:100ms">
       <h4>Navigation</h4>
       <a href="#leistungen">Leistungen</a><a href="#ueber-uns">Über uns</a>
+      <a href="#hausbesuch">Hausbesuch</a>
       <a href="#pflege">Pflege</a><a href="#termin">Termin</a>
     </nav>
     <nav data-tile="up" style="--d:200ms">

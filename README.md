@@ -38,8 +38,10 @@ der Historie oder per `sharp`-Einzeiler.
 | Studio-Kacheln (Über uns) | `studio1`, `studio2`, `studio3` |
 | Leistung Wellness-Fußpflege | `wellness-fusspflege.png` |
 | Leistung Sportlerfüße | `sportlerfusse.png` |
-| Leistung Diabetisch | **fehlt** – aktuell `01_gepflegte_fuesse` als Platzhalter |
-| Leistung Eingewachsene Nägel | **fehlt** – aktuell `studio1` als Platzhalter |
+| Leistung Wellness-Pediküre | `01_gepflegte_fuesse` |
+| Leistung Diabetisch | **fehlt** – aktuell `studio1` als Platzhalter |
+| Leistung Eingewachsene Nägel | **fehlt** – aktuell `studio3` als Platzhalter |
+| Hausbesuch mobile Praxis | **fehlt** – aktuell `04_wellness_handtuecher` als Platzhalter |
 | Ablauf, Pflegeprodukte | `02_wellness_serum`, `03_spa_travertin`, `04_wellness_handtuecher`, `studio2` |
 
 ## Offene Punkte
@@ -48,7 +50,11 @@ der Historie oder per `sharp`-Einzeiler.
    Google Fonts. Texte stammen aus Suchmaschinen-Snippets und sind zu prüfen.
 2. **Kontaktdaten** – Telefon, Straße und Öffnungszeiten sind in `index.html`
    als „ergänzen" markiert.
-3. **Fotos** – es fehlen noch `diabetische fusspflege.png` und
-   `eingewachsene.png`; die beiden Leistungskacheln zeigen bis dahin
-   Platzhalter (im Markup als Kommentar markiert).
+3. **Fotos** – es fehlen `diabetische fusspflege.png`, `eingewachsene.png` und
+   das Foto der mobilen Praxis (Trolley). Die betroffenen Stellen zeigen bis
+   dahin Platzhalter, im Markup jeweils als Kommentar markiert.
+5. **Inhalte aus der Altseite** – eingearbeitet sind der Leistungskatalog
+   („Das gehört zur Behandlung"), die drei Spezialisierungen, die
+   Wellness-Pediküre nach brasilianischer Art mit Naturlack und der Hausbesuch
+   mit mobiler Praxis. Noch offen: Preise, Öffnungszeiten, Adresse, Telefon.
 4. **Formular** – Terminanfrage braucht noch ein Backend bzw. einen Mailservice.
