@@ -57,20 +57,30 @@
   </div>
 
   <div class="hero-cards" id="heroCards">
-    <article class="hcard" data-tile="right" style="--d:0ms">
-      <div class="ph shot "><img src="assets/img/fuesse.webp" alt="Gepflegte Füße" fetchpriority="high" decoding="async"></div><span class="hcard-arrow">↗</span>
-    </article>
-    <article class="hcard hcard-text" data-tile="right" style="--d:110ms">
-      <div class="ph shot "><img src="assets/img/serum.webp" alt="Pflegeserum" fetchpriority="high" decoding="async"></div><h3>Wellness-Fußpflege</h3>
-      <p>Kräuter-Fußbad, Peeling und entspannende Fußmassage</p>
-    </article>
-    <article class="hcard" data-tile="right" style="--d:220ms">
-      <div class="ph shot "><img src="assets/img/travertin.webp" alt="Spa-Ambiente" fetchpriority="high" decoding="async"></div><span class="hcard-arrow">↗</span>
-    </article>
-    <article class="hcard hcard-text" data-tile="right" style="--d:330ms">
-      <div class="ph shot "><img src="assets/img/handtuecher.webp" alt="Frische Handtücher" fetchpriority="high" decoding="async"></div><h3>Gehwol® Pflege</h3>
-      <p>Hochwertige Produkte für beste Pflege &amp; Hygiene</p>
-    </article>
+    <button class="hcard" data-tile="right" style="--d:0ms" data-svc-link="0"
+            aria-label="Wellness-Fußpflege – zu den Leistungen springen">
+      <div class="ph shot"><img src="assets/img/fuesse.webp" alt="Wellness-Fußpflege" fetchpriority="high" decoding="async"></div>
+      <span class="hcard-arrow">↗</span>
+      <span class="hcard-body"><b>Wellness-Fußpflege</b><span>Bad, Peeling &amp; Massage</span></span>
+    </button>
+    <button class="hcard" data-tile="right" style="--d:110ms" data-svc-link="1"
+            aria-label="Sportlerfüße – zu den Leistungen springen">
+      <div class="ph shot"><img src="assets/img/serum.webp" alt="Sportlerfüße" fetchpriority="high" decoding="async"></div>
+      <span class="hcard-arrow">↗</span>
+      <span class="hcard-body"><b>Sportlerfüße</b><span>Für beanspruchte Füße</span></span>
+    </button>
+    <button class="hcard" data-tile="right" style="--d:220ms" data-svc-link="2"
+            aria-label="Diabetische Fußpflege – zu den Leistungen springen">
+      <div class="ph shot"><img src="assets/img/travertin.webp" alt="Diabetische Fußpflege" fetchpriority="high" decoding="async"></div>
+      <span class="hcard-arrow">↗</span>
+      <span class="hcard-body"><b>Diabetische Fußpflege</b><span>Behutsam &amp; vorbeugend</span></span>
+    </button>
+    <button class="hcard" data-tile="right" style="--d:330ms" data-svc-link="3"
+            aria-label="Eingewachsene Nägel – zu den Leistungen springen">
+      <div class="ph shot"><img src="assets/img/handtuecher.webp" alt="Eingewachsene Nägel" fetchpriority="high" decoding="async"></div>
+      <span class="hcard-arrow">↗</span>
+      <span class="hcard-body"><b>Eingewachsene Nägel</b><span>Korrektur mit Spange</span></span>
+    </button>
   </div>
 
 </section>
@@ -138,8 +148,8 @@
       </li>
     </ul>
 
-    <div class="svc-rail" id="svcRail">
-      <article class="svc-card is-active" data-pane="0" data-tile="right" style="--d:0ms">
+    <div class="svc-stack" id="svcStack">
+      <div class="svc-slot" data-tile="right" style="--d:0ms"><article class="svc-card is-active" data-pane="0">
         <div class="ph shot "><img src="assets/img/wellness.webp" alt="Wellness-Fußpflege" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
@@ -147,8 +157,8 @@
           <p>Kräuter-Fußbad, Peeling, gründliche Nagel- und Hautpflege und eine entspannende
              Fußmassage mit Gehwol®-Produkten – auf Wunsch mit Lack in Naturtönen.</p>
         </div>
-      </article>
-      <article class="svc-card" data-pane="1" data-tile="right" style="--d:120ms">
+      </article></div>
+      <div class="svc-slot" data-tile="right" style="--d:120ms"><article class="svc-card" data-pane="1">
         <div class="ph shot "><img src="assets/img/sportler.webp" alt="Sportlerfüße" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
@@ -156,8 +166,8 @@
           <p>Regeneration für stark beanspruchte Füße: Druckstellen, Hornhaut und beanspruchte
              Nägel werden schonend behandelt.</p>
         </div>
-      </article>
-      <article class="svc-card" data-pane="2" data-tile="right" style="--d:240ms">
+      </article></div>
+      <div class="svc-slot" data-tile="right" style="--d:240ms"><article class="svc-card" data-pane="2">
         <!-- Platzhalter: "diabetische fusspflege.png" fehlt noch im Repo -->
         <div class="ph shot "><img src="assets/img/studio2.webp" alt="Diabetische Fußpflege" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
@@ -166,8 +176,8 @@
           <p>Kosmetische Fachfußpflege zur Vorbeugung – besonders behutsam, hygienisch und
              aufmerksam auf jede Veränderung der Haut.</p>
         </div>
-      </article>
-      <article class="svc-card" data-pane="3" data-tile="right" style="--d:360ms">
+      </article></div>
+      <div class="svc-slot" data-tile="right" style="--d:360ms"><article class="svc-card" data-pane="3">
         <!-- Platzhalter: "eingewachsene.png" fehlt noch im Repo -->
         <div class="ph shot "><img src="assets/img/travertin.webp" alt="Eingewachsene Nägel" loading="lazy" decoding="async"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
@@ -176,7 +186,7 @@
           <p>Behandlung mit Nagelkorrektur-Spangensystemen – für spürbare Entlastung und ein
              gesundes Nagelwachstum.</p>
         </div>
-      </article>
+      </article></div>
     </div>
   </div>
 </section>
@@ -190,18 +200,26 @@
 
   <div class="flow-rail">
     <article class="flow-card flow-lead" data-tile="left">
-      <div class="ph shot "><img src="assets/img/wellness.webp" alt="Behandlung im Studio" loading="lazy" decoding="async"></div>
-      <div class="flow-badge"><i>↗</i><span>Ablauf</span></div>
+      <div class="ph shot"><img src="assets/img/wellness.webp" alt="Behandlung im Studio" loading="lazy" decoding="async"></div>
+      <div class="flow-badge"><i>↗</i><span>Mehr Details</span></div>
       <div class="flow-body">
         <h3>Ganzheitlicher Ansatz</h3>
         <p>Von der Analyse über die Behandlung bis zur Pflege zu Hause – wir begleiten Sie Schritt für Schritt.</p>
-        <span class="chip"><i>✻</i> Fußpflege</span>
       </div>
+      <span class="chip"><i>✻</i> Fußpflege</span>
     </article>
-    <article class="flow-card" data-tile="right" style="--d:120ms"><div class="ph shot "><img src="assets/img/fuesse.webp" alt="Kräuter-Fußbad" loading="lazy" decoding="async"></div><span class="flow-step">01 · Kräuter-Fußbad</span></article>
-    <article class="flow-card" data-tile="right" style="--d:240ms"><div class="ph shot "><img src="assets/img/serum.webp" alt="Peeling" loading="lazy" decoding="async"></div><span class="flow-step">02 · Peeling</span></article>
-    <article class="flow-card" data-tile="right" style="--d:360ms"><div class="ph shot "><img src="assets/img/studio2.webp" alt="Nagel- und Hautpflege" loading="lazy" decoding="async"></div><span class="flow-step">03 · Nagel- &amp; Hautpflege</span></article>
-    <article class="flow-card" data-tile="right" style="--d:480ms"><div class="ph shot "><img src="assets/img/handtuecher.webp" alt="Massage und Lack" loading="lazy" decoding="async"></div><span class="flow-step">04 · Massage &amp; Lack</span></article>
+    <article class="flow-card" data-tile="right" style="--d:120ms">
+      <div class="ph shot"><img src="assets/img/fuesse.webp" alt="Gepflegte Füße" loading="lazy" decoding="async"></div>
+    </article>
+    <article class="flow-card" data-tile="right" style="--d:240ms">
+      <div class="ph shot"><img src="assets/img/studio2.webp" alt="Pflegeprodukte" loading="lazy" decoding="async"></div>
+    </article>
+    <article class="flow-card" data-tile="right" style="--d:360ms">
+      <div class="ph shot"><img src="assets/img/handtuecher.webp" alt="Frische Handtücher" loading="lazy" decoding="async"></div>
+    </article>
+    <article class="flow-card" data-tile="right" style="--d:480ms">
+      <div class="ph shot"><img src="assets/img/travertin.webp" alt="Spa-Ambiente" loading="lazy" decoding="async"></div>
+    </article>
   </div>
 </section>
 

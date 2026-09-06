@@ -25,7 +25,7 @@
       railIo.unobserve(e.target);
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.flow-rail, .svc-rail, .hero-cards').forEach((r) => railIo.observe(r));
+  document.querySelectorAll('.flow-rail, .svc-stack, .hero-cards').forEach((r) => railIo.observe(r));
 
   /* ---- Header: verstecken beim Runterscrollen, Farbe wechseln ---- */
   const header = document.getElementById('header');
@@ -80,22 +80,40 @@
     }
   });
 
-  /* ---- Leistungen: Liste steuert das Bilder-Rail ---- */
+  /* ---- Leistungen: Liste und Kartenstapel ----
+     Die Karten liegen uebereinander; --i ist der Abstand zur aktiven Karte und
+     steuert Versatz, Groesse und Stapelreihenfolge im CSS. */
   const svcItems = [...document.querySelectorAll('.svc')];
+  const svcSlots = [...document.querySelectorAll('.svc-slot')];
   const svcPanes = [...document.querySelectorAll('.svc-card')];
-  const svcRail = document.getElementById('svcRail');
-  const showSvc = (i, scroll) => {
-    svcItems.forEach((el, n) => el.classList.toggle('is-active', n === i));
-    svcPanes.forEach((el, n) => el.classList.toggle('is-active', n === i));
-    if (scroll && svcRail && svcPanes[i]) {
-      svcRail.scrollTo({ left: svcPanes[i].offsetLeft - svcRail.offsetLeft, behavior: 'smooth' });
-    }
+  const svcCount = svcPanes.length;
+
+  const showSvc = (i) => {
+    const active = ((i % svcCount) + svcCount) % svcCount;
+    svcItems.forEach((el, n) => el.classList.toggle('is-active', n === active));
+    svcSlots.forEach((slot, n) => {
+      const rank = (n - active + svcCount) % svcCount;
+      slot.style.setProperty('--i', rank);
+      svcPanes[n].classList.toggle('is-active', rank === 0);
+    });
   };
+  showSvc(0);
+
   svcItems.forEach((el, i) => {
-    el.addEventListener('mouseenter', () => showSvc(i, true));
-    el.addEventListener('click', () => showSvc(i, true));
+    el.addEventListener('mouseenter', () => showSvc(i));
+    el.addEventListener('click', () => showSvc(i));
   });
-  svcPanes.forEach((el, i) => el.addEventListener('mouseenter', () => showSvc(i, false)));
+  svcPanes.forEach((el, i) => el.addEventListener('click', () => showSvc(i)));
+
+  /* ---- Hero-Kacheln: Klick oeffnet die Leistung und scrollt hin ---- */
+  document.querySelectorAll('[data-svc-link]').forEach((card) => {
+    card.addEventListener('click', () => {
+      const i = Number(card.dataset.svcLink);
+      showSvc(i);
+      document.getElementById('leistungen')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   /* ---- Zähler in den Stat-Kacheln ---- */
   const counters = document.querySelectorAll('[data-count]');

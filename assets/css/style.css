@@ -144,15 +144,25 @@ button,input,select,textarea{font:inherit;color:inherit}
 .play-label{font-size:13px;line-height:1.35;opacity:.9}
 .hero-cards{position:absolute;right:3%;bottom:56px;z-index:2;display:flex;gap:12px;max-width:64vw}
 .hcard{position:relative;width:126px;height:146px;border-radius:var(--r-m);overflow:hidden;
-  box-shadow:var(--shadow);transition:transform .5s var(--ease)}
-.hcard:hover{transform:translateY(-10px)}
+  padding:0;border:0;cursor:pointer;background:none;text-align:left;
+  box-shadow:var(--shadow);transition:transform .5s var(--ease),width .5s var(--ease)}
+.hcard:hover,.hcard:focus-visible{transform:translateY(-10px)}
+.hcard .ph{position:absolute;inset:0;border-radius:inherit}
 .hcard-arrow{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;
-  display:grid;place-items:center;background:rgba(255,255,255,.85);font-size:13px}
-.hcard-text{background:rgba(255,255,255,.12);backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,.28);padding:15px 14px;color:#fff;display:flex;
-  flex-direction:column;justify-content:center;gap:8px}
-.hcard-text h3{font-size:14px;font-weight:700}
-.hcard-text p{font-size:11px;line-height:1.45;opacity:.82}
+  display:grid;place-items:center;background:rgba(255,255,255,.85);font-size:12px;
+  transition:transform .4s var(--ease),opacity .4s}
+.hcard:hover .hcard-arrow{transform:rotate(45deg) scale(1.05)}
+/* Ueberschrift und Text liegen still unter einem Verlauf und kommen beim
+   Hover hoch. */
+.hcard-body{position:absolute;left:0;right:0;bottom:0;padding:14px 13px;color:#fff;
+  display:flex;flex-direction:column;gap:5px;
+  background:linear-gradient(to top,rgba(25,14,10,.9),rgba(25,14,10,.45) 55%,transparent);
+  opacity:0;transform:translateY(14px);
+  transition:opacity .45s var(--ease),transform .5s var(--ease)}
+.hcard:hover .hcard-body,.hcard:focus-visible .hcard-body{opacity:1;transform:none}
+.hcard-body b{font-size:13px;font-weight:700;line-height:1.25}
+.hcard-body span{font-size:10.5px;line-height:1.45;opacity:.85}
+
 .hero-foot{position:absolute;left:0;right:0;bottom:38px;z-index:3;
   width:min(100% - 40px,1440px);margin-inline:auto;
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -208,49 +218,62 @@ button,input,select,textarea{font:inherit;color:inherit}
   border:1px solid var(--line);font-size:13px;transition:.4s var(--ease)}
 .svc.is-active .svc-go,.svc:hover .svc-go{background:var(--ink);color:#fff;border-color:var(--ink);transform:rotate(0)}
 .svc.is-active .svc-name{font-weight:700}
-.svc-rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
-  padding:6px 0 22px;scrollbar-width:none;
+/* Die Karten liegen als Stapel uebereinander: die aktive vorn, die uebrigen
+   versetzt und verkleinert dahinter. Der Reveal sitzt auf .svc-slot, damit er
+   die Stapel-Transformation der Karte nicht ueberschreibt. */
+.svc-stack{position:relative;aspect-ratio:16/11;
   margin-right:calc(-1 * max(20px,(100vw - var(--wrap))/2 + 20px))}
-.svc-rail::-webkit-scrollbar{display:none}
-.svc-card{position:relative;flex:0 0 auto;width:min(430px,72vw);aspect-ratio:16/12;
-  border-radius:var(--r-l);overflow:hidden;scroll-snap-align:start;box-shadow:var(--shadow);
-  transition:transform .55s var(--ease),filter .55s var(--ease)}
+.svc-slot{position:absolute;inset:0;z-index:calc(10 - var(--i,0))}
+.svc-card{position:absolute;inset:0;border-radius:var(--r-l);overflow:hidden;
+  width:min(430px,66%);box-shadow:var(--shadow);cursor:pointer;
+  transform:translateX(calc(var(--i,0) * 58%)) scale(calc(1 - var(--i,0) * .06));
+  transform-origin:left center;
+  transition:transform .8s var(--ease),filter .8s var(--ease)}
+.svc-card:not(.is-active){filter:brightness(calc(1 - var(--i,0) * .07)) saturate(.9)}
 .svc-card .ph{position:absolute;inset:0}
-.svc-card:not(.is-active){filter:saturate(.85)}
-.svc-card.is-active{transform:translateY(-8px)}
-.svc-card .svc-badge,.svc-card .svc-body{opacity:0;transition:opacity .5s var(--ease)}
-.svc-card.is-active .svc-badge,.svc-card.is-active .svc-body,
-.svc-card:hover .svc-badge,.svc-card:hover .svc-body{opacity:1}
-.svc-body{position:absolute;left:0;right:0;bottom:0;padding:30px;color:#fff;
-  background:linear-gradient(to top,rgba(25,14,10,.86),rgba(25,14,10,.05))}
+.svc-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px;color:#fff;
+  background:linear-gradient(to top,rgba(25,14,10,.88),rgba(25,14,10,.05))}
 .svc-body h3{font-size:clamp(20px,2.4vw,28px);font-weight:700;margin-bottom:10px}
-.svc-body p{font-size:14px;line-height:1.6;max-width:52ch;opacity:.88}
-.svc-badge,.flow-badge{position:absolute;top:24px;right:24px;width:88px;height:88px;border-radius:50%;
-  display:grid;place-content:center;justify-items:center;gap:4px;color:#fff;font-size:11px;
-  background:rgba(35,20,15,.35);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);
-  transition:transform .5s var(--ease)}
-.svc-badge i,.flow-badge i{font-style:normal;font-size:15px}
-.svc-card:hover .svc-badge,.flow-card:hover .flow-badge{transform:scale(1.08)}
+.svc-body p{font-size:14px;line-height:1.6;max-width:46ch;opacity:.9}
+.svc-badge{position:absolute;top:24px;right:24px;z-index:2;width:88px;height:88px;
+  border-radius:50%;display:grid;place-content:center;justify-items:center;gap:4px;
+  color:#fff;font-size:11px;background:rgba(35,20,15,.32);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.3);transition:transform .5s var(--ease)}
+.svc-badge i{font-style:normal;font-size:15px}
+.svc-card:hover .svc-badge{transform:scale(1.08)}
+.svc-card .svc-badge,.svc-card .svc-body{opacity:0;transition:opacity .5s var(--ease)}
+.svc-card.is-active .svc-badge,.svc-card.is-active .svc-body{opacity:1}
 
 /* ============ Flow ============ */
-.flow-rail{display:flex;gap:18px;overflow-x:auto;padding:4px 20px 24px;
-  width:min(100% ,1520px);margin-inline:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+/* Breite Leitkarte links, schmalere Bildkarten daneben, die zum rechten Rand
+   auslaufen - Kopfzeile und Leitkarte stehen auf derselben Fluchtlinie. */
+.flow-rail{width:100%;padding-left:max(20px,(100vw - var(--wrap))/2);padding-right:20px;
+  display:flex;gap:16px;align-items:stretch;height:clamp(300px,32vw,400px);
+  overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
 .flow-rail::-webkit-scrollbar{display:none}
-.flow-card{position:relative;flex:0 0 auto;width:270px;aspect-ratio:3/3.6;border-radius:var(--r-l);
-  overflow:hidden;scroll-snap-align:start;box-shadow:var(--shadow);transition:transform .5s var(--ease)}
+.flow-card{position:relative;flex:0 0 auto;height:100%;width:210px;
+  border-radius:var(--r-l);overflow:hidden;scroll-snap-align:start;
+  box-shadow:var(--shadow);transition:transform .5s var(--ease)}
 .flow-card:hover{transform:translateY(-8px)}
-.flow-lead{width:min(560px,80vw);aspect-ratio:auto}
 .flow-card .ph{position:absolute;inset:0}
-.flow-body{position:relative;padding:clamp(28px,4vw,44px);height:100%;display:flex;
-  flex-direction:column;justify-content:flex-end;gap:12px;color:#fff;min-height:360px}
-.flow-body h3{font-size:clamp(22px,2.6vw,30px);font-weight:700}
-.flow-body p{font-size:14px;opacity:.88;max-width:40ch}
-.chip{align-self:flex-start;display:inline-flex;gap:8px;align-items:center;margin-top:6px;
-  padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);font-size:13px}
+.flow-lead{width:min(620px,62vw)}
+.flow-lead::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(120,52,34,.72),rgba(120,52,34,.18) 62%,transparent)}
+.flow-badge{position:absolute;top:24px;right:24px;z-index:2;width:96px;height:96px;
+  border-radius:50%;display:grid;place-content:center;justify-items:center;gap:4px;
+  color:#fff;font-size:11px;background:rgba(35,20,15,.3);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.3);transition:transform .5s var(--ease)}
+.flow-badge i{font-style:normal;font-size:15px}
+.flow-card:hover .flow-badge{transform:scale(1.08)}
+.flow-body{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:clamp(22px,3vw,34px);color:#fff;display:flex;flex-direction:column;gap:10px}
+.flow-body h3{font-size:clamp(20px,2.3vw,27px);font-weight:700}
+.flow-body p{font-size:14px;line-height:1.55;opacity:.9;max-width:26ch}
+.chip{position:absolute;right:clamp(22px,3vw,34px);bottom:clamp(22px,3vw,34px);z-index:3;
+  display:inline-flex;gap:8px;align-items:center;padding:11px 20px;border-radius:999px;
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.32);
+  backdrop-filter:blur(10px);color:#fff;font-size:13px;font-weight:500}
 .chip i{font-style:normal;opacity:.75}
-.flow-step{position:absolute;left:20px;bottom:20px;padding:10px 16px;border-radius:999px;
-  background:rgba(255,255,255,.86);font-size:12.5px;font-weight:600}
 
 /* ============ Products ============ */
 .products{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
@@ -328,7 +351,8 @@ a.info:hover{transform:translateY(-4px);background:#fff}
 /* ============ Responsive ============ */
 @media (max-width:1080px){
   .about-grid,.services-grid,.products-grid,.reviews-grid,.booking-inner{grid-template-columns:1fr}
-  .svc-rail{margin-right:calc(-1 * max(20px,(100vw - var(--wrap))/2 + 20px))}
+  .svc-stack{aspect-ratio:16/13}
+  .svc-card{width:min(430px,74%)}
   .rcol-a{padding-top:0}
   .tile-soft{margin-top:0;aspect-ratio:16/9}
   .hero-play{display:none}
@@ -348,6 +372,12 @@ a.info:hover{transform:translateY(-4px);background:#fff}
   .hero-cards::-webkit-scrollbar{display:none}
   .hcard{flex:0 0 auto}
   .stats,.product-cards,.review-cards,.info-tiles{grid-template-columns:1fr 1fr}
+  .flow-rail{height:clamp(280px,72vw,360px)}
+  .flow-lead{width:min(560px,86vw)}
+  .flow-card{width:160px}
+  .svc-stack{aspect-ratio:4/3.4}
+  .svc-card{width:min(430px,80%)}
+  .flow-body p{display:none}
 }
 @media (max-width:560px){
   .stats,.product-cards,.review-cards,.info-tiles,.footer-grid{grid-template-columns:1fr}
@@ -363,4 +393,10 @@ a.info:hover{transform:translateY(-4px);background:#fff}
 }
 @media (max-width:430px){
   .brand{display:none}
+}
+
+/* Ohne Hover (Touch) gibt es kein Aufdecken – dort stehen die Texte dauerhaft. */
+@media (hover:none){
+  .hcard-body{opacity:1;transform:none}
+  .svc-card .svc-body{opacity:1}
 }
