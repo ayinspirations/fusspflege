@@ -31,10 +31,15 @@
   <a href="#home" class="brand">Fußpflege<span>Wellness</span></a>
 
   <div class="nav-actions">
-    <a href="#kontakt" class="icon-btn" aria-label="Kontakt">
-      <svg viewBox="0 0 24 24"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.3a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.2z"/></svg>
+    <a href="#leistungen" class="icon-btn" aria-label="Leistungen suchen">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg>
     </a>
-    <a href="#termin" class="btn btn-dark">Termin buchen <i class="arr">↗</i></a>
+    <a href="#pflege" class="icon-btn" aria-label="Pflegeprodukte">
+      <svg viewBox="0 0 24 24"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+    </a>
+    <a href="#termin" class="icon-btn" aria-label="Termin">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+    </a>
   </div>
 </header>
 
@@ -47,57 +52,66 @@
 
   <div class="hero-inner">
     <h1 class="hero-title">
-      <span class="line" data-reveal><b>Wohlfühlen</b> beginnt</span>
-      <span class="line" data-reveal>bei den <b>Füßen</b> – Ihre</span>
-      <span class="line" data-reveal>Fachfußpflege in Leonberg</span>
+      <span class="line" data-reveal><b>Wohlfühlen</b> beginnt bei</span>
+      <span class="line" data-reveal>den <b>Füßen</b> – Ihre Fachfuß-</span>
+      <span class="line" data-reveal><b>pflege</b> in Leonberg</span>
     </h1>
     <p class="hero-sub" data-reveal>
       Professionelle, hygienische und entspannende Fußpflege nach brasilianischer Art.
       Gründlich, intensiv und mit viel Liebe zum Detail – für Füße, die täglich viel leisten.
     </p>
-
     <div class="hero-cta" data-reveal>
       <a href="#termin" class="btn btn-light">Termin vereinbaren <i class="arr">↗</i></a>
       <a href="#leistungen" class="btn btn-ghost">Leistungen ansehen</a>
     </div>
   </div>
 
-  <a href="#ueber-uns" class="hero-play" data-reveal>
+  <a href="#ueber-uns" class="hero-play" data-tile="right">
     <span class="play-ring"><i>▶</i></span>
     <span class="play-label">Studio<br>Einblick</span>
   </a>
 
   <div class="hero-cards" id="heroCards">
-    <article class="hcard" data-tile style="--d:0ms">
+    <article class="hcard" data-tile="right" style="--d:0ms">
       <div class="ph ph-a"></div><span class="hcard-arrow">↗</span>
     </article>
-    <article class="hcard hcard-text" data-tile style="--d:90ms">
+    <article class="hcard hcard-text" data-tile="right" style="--d:110ms">
       <h3>Wellness-Fußpflege</h3>
       <p>Kräuter-Fußbad, Peeling und entspannende Fußmassage</p>
     </article>
-    <article class="hcard" data-tile style="--d:180ms">
+    <article class="hcard" data-tile="right" style="--d:220ms">
       <div class="ph ph-b"></div><span class="hcard-arrow">↗</span>
     </article>
-    <article class="hcard hcard-text" data-tile style="--d:270ms">
+    <article class="hcard hcard-text" data-tile="right" style="--d:330ms">
       <h3>Gehwol® Pflege</h3>
       <p>Hochwertige Produkte für beste Pflege &amp; Hygiene</p>
     </article>
   </div>
 
-  <div class="hero-tags">
-    <span class="tag" data-tile style="--d:0ms"><i>✻</i> Wellness-Fußpflege</span>
-    <span class="tag" data-tile style="--d:60ms"><i>✻</i> Sportlerfüße</span>
-    <span class="tag" data-tile style="--d:120ms"><i>✻</i> Diabetische Fußpflege</span>
-    <span class="tag" data-tile style="--d:180ms"><i>✻</i> Nagelkorrektur</span>
-    <span class="tag" data-tile style="--d:240ms"><i>✻</i> Maniküre</span>
+  <div class="hero-foot">
+    <div class="hero-tags">
+      <span class="tag" data-tile="left" style="--d:0ms"><i>✻</i> Wellness-Fußpflege</span>
+      <span class="tag" data-tile="left" style="--d:70ms"><i>✻</i> Sportlerfüße</span>
+      <span class="tag" data-tile="left" style="--d:140ms"><i>✻</i> Diabetiker</span>
+      <span class="tag" data-tile="left" style="--d:210ms"><i>✻</i> Nagelkorrektur</span>
+      <span class="tag" data-tile="left" style="--d:280ms"><i>✻</i> Maniküre</span>
+    </div>
+
+    <div class="hero-slider" data-tile="right">
+      <span class="hs-num">01</span>
+      <span class="hs-bar"><i id="hsFill"></i></span>
+      <span class="hs-num hs-dim">04</span>
+      <button class="hs-btn" id="hsPrev" aria-label="Zurück">←</button>
+      <button class="hs-btn hs-btn-dark" id="hsNext" aria-label="Weiter">→</button>
+    </div>
   </div>
 </section>
 
 <!-- ══════════ MARQUEE ══════════ -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Kräuter-Fußbad ✻ Peeling ✻ Fußmassage ✻ Nagelpflege ✻ Hornhautentfernung ✻ Nagellack in Naturtönen ✻ Gehwol® ✻</span>
-    <span>Kräuter-Fußbad ✻ Peeling ✻ Fußmassage ✻ Nagelpflege ✻ Hornhautentfernung ✻ Nagellack in Naturtönen ✻ Gehwol® ✻</span>
+    <span>Kräuter-Fußbad ✻ Peeling ✻ Fußmassage ✻ Nagelpflege ✻ Hornhautentfernung ✻ Lack in Naturtönen ✻ Gehwol® ✻</span>
+    <span>Kräuter-Fußbad ✻ Peeling ✻ Fußmassage ✻ Nagelpflege ✻ Hornhautentfernung ✻ Lack in Naturtönen ✻ Gehwol® ✻</span>
   </div>
 </div>
 
@@ -105,18 +119,18 @@
 <section class="section about" id="ueber-uns">
   <div class="wrap about-grid">
     <div class="about-left">
-      <div class="tile tile-tall" data-tile><div class="ph ph-c"></div></div>
+      <div class="tile tile-tall" data-tile="left"><div class="ph ph-c"></div></div>
       <p class="about-note" data-reveal>Entspannung für Haut und Sinne –<br>Ihre Fußpflege in Leonberg.</p>
-      <a href="#leistungen" class="btn btn-outline" data-reveal>Mehr erfahren <i class="arr">↗</i></a>
+      <a href="#leistungen" class="btn btn-outline" data-tile="left" style="--d:120ms">Mehr erfahren <i class="arr">↗</i></a>
     </div>
 
     <div class="about-mid">
-      <div class="tile tile-soft" data-tile style="--d:120ms"><div class="ph ph-d"></div></div>
+      <div class="tile tile-soft" data-tile="up" style="--d:140ms"><div class="ph ph-d"></div></div>
     </div>
 
     <div class="about-right">
       <h2 class="h2" data-reveal>Entdecken Sie<br>Ihr Wohlbefinden</h2>
-      <div class="tile tile-wide" data-tile style="--d:200ms"><div class="ph ph-e"></div></div>
+      <div class="tile tile-wide" data-tile="right" style="--d:200ms"><div class="ph ph-e"></div></div>
       <p class="lead" data-reveal>
         In unserem Studio arbeiten wir mit hochwertigen Produkten der Marke <strong>Gehwol®</strong>,
         um Ihnen beste Pflege und höchste Hygiene zu garantieren. Jede Behandlung nehmen wir uns
@@ -126,10 +140,10 @@
   </div>
 
   <div class="wrap stats">
-    <div class="stat" data-tile style="--d:0ms"><b data-count="15">0</b><span>Jahre Erfahrung</span></div>
-    <div class="stat" data-tile style="--d:80ms"><b data-count="2400">0</b><span>Behandlungen</span></div>
-    <div class="stat" data-tile style="--d:160ms"><b data-count="100">0</b><span>% Gehwol® Pflege</span></div>
-    <div class="stat" data-tile style="--d:240ms"><b data-count="5">0</b><span>Sterne Bewertungen</span></div>
+    <div class="stat" data-tile="left"  style="--d:0ms"><b data-count="15">0</b><span>Jahre Erfahrung</span></div>
+    <div class="stat" data-tile="up"    style="--d:90ms"><b data-count="2400">0</b><span>Behandlungen</span></div>
+    <div class="stat" data-tile="up"    style="--d:180ms"><b data-count="100">0</b><span>% Gehwol® Pflege</span></div>
+    <div class="stat" data-tile="right" style="--d:270ms"><b data-count="5">0</b><span>Sterne Bewertungen</span></div>
   </div>
 </section>
 
@@ -137,54 +151,45 @@
 <section class="section services" id="leistungen">
   <div class="wrap head-row">
     <h2 class="h2" data-reveal>Unsere <b>Leistungen</b></h2>
-    <a href="#termin" class="btn btn-outline" data-reveal>Alle Behandlungen <i class="arr">↗</i></a>
+    <a href="#termin" class="btn btn-outline" data-tile="right">Alle Behandlungen <i class="arr">↗</i></a>
   </div>
 
-  <div class="wrap services-grid">
+  <div class="services-grid">
     <ul class="svc-list" id="svcList">
-      <li class="svc is-active" data-svc="0" data-tile style="--d:0ms">
-        <span class="svc-thumb ph ph-a"></span>
-        <span class="svc-name">Wellness-Fußpflege</span>
-        <span class="svc-go">↗</span>
+      <li class="svc is-active" data-svc="0" data-tile="left" style="--d:0ms">
+        <span class="svc-thumb ph ph-a"></span><span class="svc-name">Wellness-Fußpflege</span><span class="svc-go">↗</span>
       </li>
-      <li class="svc" data-svc="1" data-tile style="--d:80ms">
-        <span class="svc-thumb ph ph-b"></span>
-        <span class="svc-name">Sportlerfüße</span>
-        <span class="svc-go">↗</span>
+      <li class="svc" data-svc="1" data-tile="left" style="--d:90ms">
+        <span class="svc-thumb ph ph-b"></span><span class="svc-name">Sportlerfüße</span><span class="svc-go">↗</span>
       </li>
-      <li class="svc" data-svc="2" data-tile style="--d:160ms">
-        <span class="svc-thumb ph ph-c"></span>
-        <span class="svc-name">Diabetische Fußpflege</span>
-        <span class="svc-go">↗</span>
+      <li class="svc" data-svc="2" data-tile="left" style="--d:180ms">
+        <span class="svc-thumb ph ph-c"></span><span class="svc-name">Diabetische Fußpflege</span><span class="svc-go">↗</span>
       </li>
-      <li class="svc" data-svc="3" data-tile style="--d:240ms">
-        <span class="svc-thumb ph ph-d"></span>
-        <span class="svc-name">Eingewachsene Nägel</span>
-        <span class="svc-go">↗</span>
+      <li class="svc" data-svc="3" data-tile="left" style="--d:270ms">
+        <span class="svc-thumb ph ph-d"></span><span class="svc-name">Eingewachsene Nägel</span><span class="svc-go">↗</span>
       </li>
     </ul>
 
-    <div class="svc-stage" data-tile>
-      <article class="svc-card is-active" data-pane="0">
+    <div class="svc-rail" id="svcRail">
+      <article class="svc-card is-active" data-pane="0" data-tile="right" style="--d:0ms">
         <div class="ph ph-a"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Wellness-Fußpflege</h3>
-          <p>Komplette Fußbehandlung nach brasilianischer Art: Kräuter-Fußbad, Peeling, gründliche
-             Nagel- und Hautpflege sowie eine entspannende Fußmassage mit Gehwol®-Produkten –
-             auf Wunsch mit perfektem Lack in Naturtönen.</p>
+          <p>Kräuter-Fußbad, Peeling, gründliche Nagel- und Hautpflege und eine entspannende
+             Fußmassage mit Gehwol®-Produkten – auf Wunsch mit Lack in Naturtönen.</p>
         </div>
       </article>
-      <article class="svc-card" data-pane="1">
+      <article class="svc-card" data-pane="1" data-tile="right" style="--d:120ms">
         <div class="ph ph-b"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Sportlerfüße</h3>
-          <p>Regeneration für stark beanspruchte Füße: Druckstellen, Hornhaut und beanspruchte Nägel
-             werden schonend behandelt, damit Sie wieder beschwerdefrei unterwegs sind.</p>
+          <p>Regeneration für stark beanspruchte Füße: Druckstellen, Hornhaut und beanspruchte
+             Nägel werden schonend behandelt.</p>
         </div>
       </article>
-      <article class="svc-card" data-pane="2">
+      <article class="svc-card" data-pane="2" data-tile="right" style="--d:240ms">
         <div class="ph ph-c"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
@@ -193,13 +198,13 @@
              aufmerksam auf jede Veränderung der Haut.</p>
         </div>
       </article>
-      <article class="svc-card" data-pane="3">
+      <article class="svc-card" data-pane="3" data-tile="right" style="--d:360ms">
         <div class="ph ph-d"></div>
         <div class="svc-badge"><i>↗</i><span>Details</span></div>
         <div class="svc-body">
           <h3>Eingewachsene Nägel</h3>
-          <p>Behandlung eingewachsener Nägel mit Nagelkorrektur-Spangensystemen – für spürbare
-             Entlastung und ein gesundes Nagelwachstum.</p>
+          <p>Behandlung mit Nagelkorrektur-Spangensystemen – für spürbare Entlastung und ein
+             gesundes Nagelwachstum.</p>
         </div>
       </article>
     </div>
@@ -210,11 +215,11 @@
 <section class="section flow">
   <div class="wrap head-row">
     <h2 class="h2" data-reveal>Exklusive <b>Wohlfühl-</b><br>Momente erwarten Sie</h2>
-    <a href="#termin" class="btn btn-outline" data-reveal>Termin sichern <i class="arr">↗</i></a>
+    <a href="#termin" class="btn btn-outline" data-tile="right">Termin sichern <i class="arr">↗</i></a>
   </div>
 
   <div class="flow-rail">
-    <article class="flow-card flow-lead" data-tile>
+    <article class="flow-card flow-lead" data-tile="left">
       <div class="ph ph-e"></div>
       <div class="flow-badge"><i>↗</i><span>Ablauf</span></div>
       <div class="flow-body">
@@ -223,36 +228,33 @@
         <span class="chip"><i>✻</i> Fußpflege</span>
       </div>
     </article>
-    <article class="flow-card" data-tile style="--d:100ms"><div class="ph ph-a"></div><span class="flow-step">01 · Kräuter-Fußbad</span></article>
-    <article class="flow-card" data-tile style="--d:200ms"><div class="ph ph-b"></div><span class="flow-step">02 · Peeling</span></article>
-    <article class="flow-card" data-tile style="--d:300ms"><div class="ph ph-c"></div><span class="flow-step">03 · Nagel- &amp; Hautpflege</span></article>
-    <article class="flow-card" data-tile style="--d:400ms"><div class="ph ph-d"></div><span class="flow-step">04 · Massage &amp; Lack</span></article>
+    <article class="flow-card" data-tile="right" style="--d:120ms"><div class="ph ph-a"></div><span class="flow-step">01 · Kräuter-Fußbad</span></article>
+    <article class="flow-card" data-tile="right" style="--d:240ms"><div class="ph ph-b"></div><span class="flow-step">02 · Peeling</span></article>
+    <article class="flow-card" data-tile="right" style="--d:360ms"><div class="ph ph-c"></div><span class="flow-step">03 · Nagel- &amp; Hautpflege</span></article>
+    <article class="flow-card" data-tile="right" style="--d:480ms"><div class="ph ph-d"></div><span class="flow-step">04 · Massage &amp; Lack</span></article>
   </div>
 </section>
 
-<!-- ══════════ PRODUKTE ══════════ -->
+<!-- ══════════ PFLEGEPRODUKTE ══════════ -->
 <section class="section products" id="pflege">
   <div class="wrap products-grid">
     <div class="products-intro">
-      <p class="eyebrow" data-reveal>Pflege für zu Hause</p>
-      <h2 class="h2" data-reveal>Gehwol®<br><b>Empfehlungen</b></h2>
-      <p class="lead" data-reveal>Damit das Ergebnis lange hält, empfehlen wir Ihnen passende
-        Produkte – abgestimmt auf Ihren Hauttyp.</p>
-      <a href="#kontakt" class="btn btn-outline" data-reveal>Beratung anfragen <i class="arr">↗</i></a>
+      <p class="products-kicker" data-reveal>Pflege für zu Hause –<br>damit das Ergebnis bleibt</p>
+      <a href="#kontakt" class="btn btn-outline" data-tile="left" style="--d:120ms">Beratung anfragen <i class="arr">↗</i></a>
     </div>
 
     <div class="product-cards">
-      <article class="pcard" data-tile style="--d:0ms">
+      <article class="pcard" data-tile="left" style="--d:0ms">
         <div class="ph ph-f"></div><button class="fav" aria-label="Merken">♥</button>
-        <div class="pcard-foot"><div><h4>Fußcreme</h4><span>Intensivpflege</span></div><i class="arr">↗</i></div>
+        <div class="pcard-foot"><div><h4>Fußcreme</h4><span>ab 12,90 €</span></div><i class="arr">↗</i></div>
       </article>
-      <article class="pcard" data-tile style="--d:110ms">
+      <article class="pcard" data-tile="up" style="--d:130ms">
         <div class="ph ph-g"></div><button class="fav" aria-label="Merken">♥</button>
-        <div class="pcard-foot"><div><h4>Kräuterbad</h4><span>Entspannung</span></div><i class="arr">↗</i></div>
+        <div class="pcard-foot"><div><h4>Kräuterbad</h4><span>ab 9,50 €</span></div><i class="arr">↗</i></div>
       </article>
-      <article class="pcard" data-tile style="--d:220ms">
+      <article class="pcard" data-tile="right" style="--d:260ms">
         <div class="ph ph-h"></div><button class="fav" aria-label="Merken">♥</button>
-        <div class="pcard-foot"><div><h4>Nagelöl</h4><span>Regeneration</span></div><i class="arr">↗</i></div>
+        <div class="pcard-foot"><div><h4>Nagelöl</h4><span>ab 14,90 €</span></div><i class="arr">↗</i></div>
       </article>
     </div>
   </div>
@@ -263,30 +265,38 @@
   <div class="wrap reviews-grid">
     <div class="reviews-intro">
       <h2 class="h2" data-reveal>Strahlende <b>Bewertungen</b></h2>
-      <p class="lead" data-reveal>Entspannung für Haut und Sinne – das sagen unsere Gäste.</p>
-      <div class="avatars" data-reveal>
+      <p class="lead" data-reveal>Entspannung für Haut und Sinne –<br>das sagen unsere Gäste.</p>
+      <div class="avatars" data-tile="left" style="--d:120ms">
         <span class="av ph ph-a"></span><span class="av ph ph-b"></span><span class="av ph ph-c"></span>
         <span class="av av-more">+42</span>
       </div>
     </div>
 
     <div class="review-cards">
-      <blockquote class="rcard" data-tile style="--d:0ms">
-        <p>„Sehr gründlich und angenehm ruhig – meine Füße fühlen sich danach wie neu an."</p>
-        <footer><span class="av ph ph-a"></span><div><b>★ 5,0</b><span>Sabine K.</span></div></footer>
-      </blockquote>
-      <blockquote class="rcard" data-tile style="--d:110ms">
-        <p>„Als Läufer war ich lange auf der Suche. Hier wird wirklich auf beanspruchte Füße eingegangen."</p>
-        <footer><span class="av ph ph-b"></span><div><b>★ 5,0</b><span>Michael R.</span></div></footer>
-      </blockquote>
-      <blockquote class="rcard" data-tile style="--d:220ms">
-        <p>„Sehr hygienisch, sehr freundlich und man nimmt sich Zeit. Absolute Empfehlung."</p>
-        <footer><span class="av ph ph-c"></span><div><b>★ 4,9</b><span>Andrea M.</span></div></footer>
-      </blockquote>
-      <blockquote class="rcard" data-tile style="--d:330ms">
-        <p>„Die Nagelkorrektur hat mir endlich Erleichterung gebracht. Vielen Dank!"</p>
-        <footer><span class="av ph ph-d"></span><div><b>★ 5,0</b><span>Thomas B.</span></div></footer>
-      </blockquote>
+      <div class="rcol rcol-a">
+        <blockquote class="rcard" data-tile="up" style="--d:120ms">
+          <p>„Sehr gründlich und angenehm ruhig – meine Füße fühlen sich danach wie neu an."</p>
+          <footer><span class="av ph ph-a"></span><div><b>★ 5,0</b><span>Sabine K.</span></div></footer>
+        </blockquote>
+        <blockquote class="rcard" data-tile="left" style="--d:300ms">
+          <p>„Sehr hygienisch, sehr freundlich und man nimmt sich Zeit. Absolute Empfehlung."</p>
+          <footer><span class="av ph ph-c"></span><div><b>★ 4,9</b><span>Andrea M.</span></div></footer>
+        </blockquote>
+      </div>
+      <div class="rcol rcol-b">
+        <blockquote class="rcard" data-tile="right" style="--d:200ms">
+          <p>„Als Läufer war ich lange auf der Suche. Hier wird wirklich auf beanspruchte Füße eingegangen."</p>
+          <footer><span class="av ph ph-b"></span><div><b>★ 5,0</b><span>Michael R.</span></div></footer>
+        </blockquote>
+        <blockquote class="rcard" data-tile="right" style="--d:380ms">
+          <p>„Die Nagelkorrektur hat mir endlich Erleichterung gebracht. Vielen Dank!"</p>
+          <footer><span class="av ph ph-d"></span><div><b>★ 5,0</b><span>Thomas B.</span></div></footer>
+        </blockquote>
+        <div class="rnav" data-tile="right" style="--d:480ms">
+          <button class="hs-btn" aria-label="Zurück">←</button>
+          <button class="hs-btn hs-btn-dark" aria-label="Weiter">→</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -301,22 +311,22 @@
         und entspannende Fachfußpflege in Leonberg.</p>
 
       <div class="info-tiles" id="kontakt">
-        <a class="info" href="tel:+4971520000000" data-tile style="--d:0ms">
+        <a class="info" href="tel:+4971520000000" data-tile="left" style="--d:0ms">
           <span class="info-k">Telefon</span><span class="info-v">07152 – Nummer ergänzen</span>
         </a>
-        <a class="info" href="mailto:info@fusspflege-wellness-leonberg.de" data-tile style="--d:80ms">
+        <a class="info" href="mailto:info@fusspflege-wellness-leonberg.de" data-tile="up" style="--d:100ms">
           <span class="info-k">E-Mail</span><span class="info-v">info@fusspflege-wellness-leonberg.de</span>
         </a>
-        <div class="info" data-tile style="--d:160ms">
+        <div class="info" data-tile="up" style="--d:200ms">
           <span class="info-k">Adresse</span><span class="info-v">71229 Leonberg – Straße ergänzen</span>
         </div>
-        <div class="info" data-tile style="--d:240ms">
+        <div class="info" data-tile="left" style="--d:300ms">
           <span class="info-k">Öffnungszeiten</span><span class="info-v">Mo – Fr nach Vereinbarung</span>
         </div>
       </div>
     </div>
 
-    <form class="booking-form" data-tile style="--d:120ms" onsubmit="return false;">
+    <form class="booking-form" data-tile="right" style="--d:140ms" onsubmit="return false;">
       <h3>Terminanfrage</h3>
       <label>Name <input type="text" name="name" placeholder="Ihr Name" required></label>
       <label>Telefon <input type="tel" name="tel" placeholder="Ihre Rufnummer" required></label>
@@ -337,23 +347,20 @@
 
 <footer class="site-footer">
   <div class="wrap footer-grid">
-    <div>
+    <div data-tile="left">
       <a href="#home" class="brand brand-foot">Fußpflege<span>Wellness</span></a>
       <p>Professionelle Fachfußpflege &amp; Wellness in Leonberg.</p>
     </div>
-    <nav>
+    <nav data-tile="up" style="--d:100ms">
       <h4>Navigation</h4>
-      <a href="#leistungen">Leistungen</a>
-      <a href="#ueber-uns">Über uns</a>
-      <a href="#pflege">Pflege</a>
-      <a href="#termin">Termin</a>
+      <a href="#leistungen">Leistungen</a><a href="#ueber-uns">Über uns</a>
+      <a href="#pflege">Pflege</a><a href="#termin">Termin</a>
     </nav>
-    <nav>
+    <nav data-tile="up" style="--d:200ms">
       <h4>Rechtliches</h4>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
+      <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a>
     </nav>
-    <div>
+    <div data-tile="right" style="--d:300ms">
       <h4>Kontakt</h4>
       <p>71229 Leonberg<br>Termine nach Vereinbarung</p>
     </div>

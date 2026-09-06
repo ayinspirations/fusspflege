@@ -25,7 +25,7 @@
       railIo.unobserve(e.target);
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.flow-rail, .hero-cards, .hero-tags').forEach((r) => railIo.observe(r));
+  document.querySelectorAll('.flow-rail, .svc-rail, .hero-cards, .hero-tags').forEach((r) => railIo.observe(r));
 
   /* ---- Header: verstecken beim Runterscrollen, Farbe wechseln ---- */
   const header = document.getElementById('header');
@@ -80,17 +80,51 @@
     }
   });
 
-  /* ---- Leistungen: Liste steuert die Bühne ---- */
+  /* ---- Leistungen: Liste steuert das Bilder-Rail ---- */
   const svcItems = [...document.querySelectorAll('.svc')];
   const svcPanes = [...document.querySelectorAll('.svc-card')];
-  const showSvc = (i) => {
+  const svcRail = document.getElementById('svcRail');
+  const showSvc = (i, scroll) => {
     svcItems.forEach((el, n) => el.classList.toggle('is-active', n === i));
     svcPanes.forEach((el, n) => el.classList.toggle('is-active', n === i));
+    if (scroll && svcRail && svcPanes[i]) {
+      svcRail.scrollTo({ left: svcPanes[i].offsetLeft - svcRail.offsetLeft, behavior: 'smooth' });
+    }
   };
   svcItems.forEach((el, i) => {
-    el.addEventListener('mouseenter', () => showSvc(i));
-    el.addEventListener('click', () => showSvc(i));
+    el.addEventListener('mouseenter', () => showSvc(i, true));
+    el.addEventListener('click', () => showSvc(i, true));
   });
+  svcPanes.forEach((el, i) => el.addEventListener('mouseenter', () => showSvc(i, false)));
+
+  /* ---- Hero-Slider: wechselt durch die Behandlungen ---- */
+  const hsFill = document.getElementById('hsFill');
+  const hsNums = document.querySelectorAll('.hs-num');
+  const heroCards = [...document.querySelectorAll('.hcard')];
+  const heroTexts = [
+    ['Wellness-Fußpflege', 'Kräuter-Fußbad, Peeling und entspannende Fußmassage'],
+    ['Sportlerfüße', 'Regeneration für stark beanspruchte Füße'],
+    ['Diabetische Fußpflege', 'Behutsame Fachfußpflege zur Vorbeugung'],
+    ['Nagelkorrektur', 'Spangensysteme bei eingewachsenen Nägeln'],
+  ];
+  let slide = 0;
+  const setSlide = (n) => {
+    slide = (n + heroTexts.length) % heroTexts.length;
+    if (hsFill) hsFill.style.width = ((slide + 1) / heroTexts.length) * 100 + '%';
+    if (hsNums[0]) hsNums[0].textContent = String(slide + 1).padStart(2, '0');
+    document.querySelectorAll('.hcard-text').forEach((card, i) => {
+      const t = heroTexts[(slide + i) % heroTexts.length];
+      card.style.opacity = '0';
+      setTimeout(() => {
+        card.querySelector('h3').textContent = t[0];
+        card.querySelector('p').textContent = t[1];
+        card.style.opacity = '';
+      }, 220);
+    });
+    heroCards.forEach((c) => { c.style.transition = 'opacity .45s var(--ease), transform .5s var(--ease)'; });
+  };
+  document.getElementById('hsNext')?.addEventListener('click', () => setSlide(slide + 1));
+  document.getElementById('hsPrev')?.addEventListener('click', () => setSlide(slide - 1));
 
   /* ---- Zähler in den Stat-Kacheln ---- */
   const counters = document.querySelectorAll('[data-count]');
