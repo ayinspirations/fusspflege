@@ -28,19 +28,15 @@
   document.querySelectorAll('.flow-rail, .svc-stack, .hero-cards').forEach((r) => railIo.observe(r));
 
   /* ---- Header: verstecken beim Runterscrollen, Farbe wechseln ---- */
-  const header = document.getElementById('header');
   const progress = document.getElementById('progress');
   const hero = document.querySelector('.hero');
-  let lastY = 0;
 
   const onScroll = () => {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
 
-    header.classList.toggle('hide', y > lastY && y > 420);
     document.body.classList.toggle('scrolled', y > (hero ? hero.offsetHeight - 120 : 400));
-    lastY = y;
 
     /* Parallax im Hero */
     const media = document.querySelector('[data-parallax]');

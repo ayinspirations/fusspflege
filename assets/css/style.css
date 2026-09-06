@@ -87,18 +87,22 @@ button,input,select,textarea{font:inherit;color:inherit}
 .site-header{position:fixed;top:14px;left:0;right:0;z-index:90;
   display:flex;align-items:center;justify-content:space-between;gap:20px;
   width:min(100% - 32px,1520px);margin-inline:auto;
-  transition:transform .45s var(--ease)}
-.site-header.hide{transform:translateY(-140%)}
+  padding:6px;border:1px solid transparent;border-radius:999px;
+  transition:background .4s var(--ease),border-color .4s,box-shadow .4s}
+/* Die Leiste bleibt beim Scrollen stehen - ueber hellem Inhalt bekommt sie
+   einen eigenen Traeger, sonst waeren Marke und Burger nicht lesbar. */
+.scrolled .site-header{background:rgba(251,248,246,.9);backdrop-filter:blur(18px);
+  border-color:var(--line);box-shadow:0 16px 38px -28px rgba(60,35,25,.55)}
+.scrolled .nav-pills{background:transparent;border-color:transparent}
 .nav-shell,.nav-actions{display:flex;align-items:center;gap:10px}
 .nav-pills{display:flex;gap:6px;padding:6px;border-radius:999px;
   background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.28)}
 .pill{padding:11px 22px;border-radius:999px;font-size:14px;font-weight:500;color:#fff;
   transition:background .35s,color .35s}
 .pill.is-active,.pill:hover{background:#fff;color:var(--ink)}
-.nav-burger{width:52px;height:52px;border-radius:50%;display:none;place-items:center;gap:5px;
-  flex-direction:column;background:rgba(255,255,255,.16);backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.28);cursor:pointer}
-.nav-burger span{width:18px;height:1.6px;background:#fff;border-radius:2px;transition:.35s var(--ease)}
+.nav-burger{width:44px;height:44px;border-radius:0;display:none;place-items:center;gap:5px;
+  flex-direction:column;background:none;border:0;padding:0;cursor:pointer}
+.nav-burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.35s var(--ease)}
 .nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
 .nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
@@ -108,7 +112,6 @@ button,input,select,textarea{font:inherit;color:inherit}
   background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.28)}
 .icon-btn svg{width:19px;height:19px;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round}
 .scrolled .pill{color:var(--ink)}
-.scrolled .nav-pills,.scrolled .icon-btn,.scrolled .nav-burger{background:rgba(255,255,255,.75);border-color:var(--line)}
 .scrolled .brand{color:var(--ink)}
 .scrolled .icon-btn svg{stroke:var(--ink)}
 .scrolled .nav-burger span{background:var(--ink)}
@@ -221,7 +224,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* Die Karten liegen als Stapel uebereinander: die aktive vorn, die uebrigen
    versetzt und verkleinert dahinter. Der Reveal sitzt auf .svc-slot, damit er
    die Stapel-Transformation der Karte nicht ueberschreibt. */
-.svc-stack{position:relative;aspect-ratio:16/11;
+.svc-stack{position:relative;aspect-ratio:16/9;max-height:min(460px,52vh);
   margin-right:calc(-1 * max(20px,(100vw - var(--wrap))/2 + 20px))}
 .svc-slot{position:absolute;inset:0;z-index:calc(10 - var(--i,0))}
 .svc-card{position:absolute;inset:0;border-radius:var(--r-l);overflow:hidden;
@@ -368,13 +371,17 @@ a.info:hover{transform:translateY(-4px);background:#fff}
 }
 @media (max-width:820px){
   .nav-pills{display:none}
+  /* Burger sitzt aussen rechts und bleibt immer sichtbar. */
+  .brand{order:1;margin-right:auto}
+  .nav-actions{order:2;margin-left:auto}
+  .nav-shell{order:3}
   .nav-pills.open{display:flex;position:fixed;top:80px;left:16px;right:16px;flex-direction:column;
     background:#fff;border-color:var(--line);border-radius:var(--r-m);padding:12px;box-shadow:var(--shadow)}
   .nav-pills.open .pill{color:var(--ink);text-align:center}
   .nav-burger{display:flex}
   /* Vollbild-Hero: Text oben zentriert, Kacheln darunter, die untere Haelfte
      bleibt fuer das Motiv frei. */
-  .hero{min-height:100svh;justify-content:flex-start;padding:104px 0 46vh}
+  .hero{min-height:100svh;min-height:100dvh;justify-content:flex-start;padding:100px 0 44vh}
   .hero-cards{display:none}
   .stats,.product-cards,.review-cards,.info-tiles{grid-template-columns:1fr 1fr}
   .flow-rail{height:clamp(280px,72vw,360px)}
@@ -397,7 +404,8 @@ a.info:hover{transform:translateY(-4px);background:#fff}
   .hero-play{display:none}
 }
 @media (max-width:430px){
-  .brand{display:none}
+  .brand{font-size:14px}
+  .nav-actions .btn-dark{padding:11px 13px;font-size:12px}
 }
 
 /* Ohne Hover (Touch) gibt es kein Aufdecken – dort stehen die Texte dauerhaft. */
