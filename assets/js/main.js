@@ -88,14 +88,10 @@
   };
 
   /* ---- Header: verstecken beim Runterscrollen, Farbe wechseln ---- */
-  const progress = document.getElementById('progress');
   const hero = document.querySelector('.hero');
 
   const onScroll = () => {
     const y = window.scrollY;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
-
     document.body.classList.toggle('scrolled', y > (hero ? hero.offsetHeight - 120 : 400));
 
     catchUp();
