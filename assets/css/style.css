@@ -295,9 +295,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .treatment{margin-top:clamp(46px,6vw,80px);
   display:grid;grid-template-columns:.72fr 1.55fr;gap:clamp(28px,4vw,60px);align-items:start}
 .treatment-title{font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.02em}
-.treatment-list{list-style:none;margin:0;padding:0;
-  columns:2;column-gap:clamp(28px,4vw,56px)}
-.treatment-list li{break-inside:avoid;display:flex;gap:12px;align-items:flex-start;
+/* Festes Raster statt columns: bei columns verteilt der Browser die Punkte neu,
+   waehrend sie nacheinander erscheinen - sie sprangen dabei in die zweite
+   Spalte. Mit grid steht jede Position von Anfang an fest. */
+.treatment-list{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,auto);
+  grid-auto-flow:column;column-gap:clamp(28px,4vw,56px)}
+.treatment-list li{display:flex;gap:12px;align-items:flex-start;
   padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5}
 .treatment-list i{font-style:normal;color:var(--clay);font-size:12px;line-height:1.7;flex:0 0 auto}
 .treatment-list strong{font-weight:700}
@@ -399,9 +403,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 .review-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:start}
 .rcol{display:flex;flex-direction:column;gap:18px}
 .rcol-a{padding-top:70px}
-.rnav{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
-.rnav .hs-btn{background:#fff;border:1px solid var(--line);color:var(--ink)}
-.rnav .hs-btn-dark{background:var(--accent);border-color:var(--accent);color:#fff}
 .rcard{margin:0;background:var(--rose);border-radius:var(--r-m);padding:26px}
 .rcol-a .rcard:last-child,.rcol-b .rcard:first-child{background:#fff;border:1px solid var(--line)}
 .rcard p{font-size:15px;line-height:1.6}
@@ -445,7 +446,7 @@ a.info:hover{transform:translateY(-4px);background:#fff}
 @media (max-width:1080px){
   .about-grid,.services-grid,.products-grid,.reviews-grid,.booking-inner,
   .treatment,.homevisit-inner{grid-template-columns:1fr}
-  .treatment-list{columns:1}
+  .treatment-list{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}
   .svc-stack{aspect-ratio:16/13}
   .svc-card{width:min(430px,74%)}
   .rcol-a{padding-top:0}
